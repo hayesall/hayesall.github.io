@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display|Arimo');
+body { padding-top: 20px; padding-bottom: 40px; font-family: 'Arimo', sans-serif; font-size: 20px; }
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { font-family: 'Playfair Display', serif; }
+
+/* E-Mail */
+.obfuscate { unicode-bidi: bidi-override; direction: rtl; }
+
 .highlight .hll { background-color: #ffffcc; }
 .highlight  { background: #ffffff; }
 .highlight .c { color: #008000 } /* Comment */
