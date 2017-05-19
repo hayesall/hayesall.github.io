@@ -163,6 +163,7 @@ GEM
     minima (2.1.1)
       jekyll (~> 3.3)
     minitest (5.10.2)
+    multi_json (1.12.1)
     multipart-post (2.0.0)
     net-dns (0.8.0)
     nokogiri (1.6.8.1)
@@ -172,12 +173,14 @@ GEM
     pathutil (0.14.0)
       forwardable-extended (~> 2.6)
     public_suffix (2.0.5)
+    pygments.rb (1.1.2)
+      multi_json (>= 1.0.0)
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
     rouge (1.11.1)
     safe_yaml (1.0.4)
-    sass (3.4.23)
+    sass (3.4.24)
     sawyer (0.8.1)
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
@@ -197,8 +200,10 @@ DEPENDENCIES
   github-pages (= 138)
   jekyll (= 3.4.3)
   jekyll-feed (~> 0.6)
+  jekyll-sitemap
   json
   minima (~> 2.0)
+  pygments.rb
   tzinfo-data
 
 RUBY VERSION

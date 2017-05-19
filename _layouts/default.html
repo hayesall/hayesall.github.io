@@ -1,33 +1,35 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>{{ page.title }}</title>
-    <!-- link to main stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-  </head>
+<html lang="en">
+
+  {% include head.html %}
+  
   <body>
-    <nav>
-      <ul>
-	<li><a href="/">Home</a></li>
-	<li><a href="/about">About</a></li>
-	<li><a href="/cv">CV</a></li>
-	<li><a href="/blog/">Blog</a></li>
-      </ul>
-    </nav>
-
-    <!--analytics-->
+    
     {% include analytics.html %}
-
+    
     <div class="container">
+      <div class="header clearfix">
+	
+	<nav><ul class="nav nav-pills pull-right">
+	    <li role="presentation" class="active"><a href="/">Alexander L. Hayes</a></li>
+	    <li role="presentation"><a href="/cv">CV</a></li>
+	    <li role="presentation"><a href="/blog/">Blog</a></li>
+	</ul></nav>
+	<h3 class="text-muted">batflyer.net</h3>
+
+      </div><!-- /.header clearfix -->
+	
+      <div class="inner cover">
+	{{ content }}
+      </div><!-- /.inner cover-->
       
-      {{ content }}
-			
+      <div class="footer">
+	<p><a href="mailto:alexander@batflyer.net">alexander@batflyer.net</a> / <a href="https://github.com/batflyer">github.com/batflyer</a></p>
+      </div><!-- /.footer-->
     </div><!-- /.container -->
-    <footer>
-      <ul>
-	<li><a href="mailto:alexander@batflyer.net">email</a></li>
-	<li><a href="https://github.com/batflyer">github.com/batflyer</a></li>
-      </ul>
-    </footer>
+    
+    {% include scripts.html %}
+
   </body>
 </html>
+
