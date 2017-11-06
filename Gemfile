@@ -1,6 +1,6 @@
 #bundle exec jekyll serve
 
-source "https://rubygems.org"
+source "http://rubygems.org"
 ruby RUBY_VERSION
 
 gem "jekyll", "3.6.2"
@@ -28,6 +28,6 @@ require 'open-uri'
 versions = JSON.parse(open('https://pages.github.com/versions.json').read)
 gem 'github-pages', versions['github-pages']
 
-# jekyll sitemap for seo / pygments.rb syntax highlighter
+# jekyll sitemap for seo / rogue syntax highlighter
 gem 'jekyll-sitemap'
-gem 'pygments.rb'
+#gem 'rogue'
