@@ -15,7 +15,7 @@ github_username:  batflyer
 
 # Build settings
 markdown: kramdown
-highlighter: pygments
+highlighter: rogue
 
 theme: minimal-mistakes-jekyll
 gems:
