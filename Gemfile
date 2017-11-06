@@ -3,12 +3,9 @@
 source "https://rubygems.org"
 ruby RUBY_VERSION
 
-<<<<<<< HEAD
 gem "jekyll", "3.6.2"
-=======
-gem "jekyll", "3.5.2"
->>>>>>> 22a786a6ed6b45e0cbd605daf9777676d201e942
 gem 'json'
+gem "minimal-mistakes-jekyll"
 
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 gem "minima", "~> 2.0"
