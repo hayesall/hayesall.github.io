@@ -1,3 +1,6 @@
+@charset "UTF-8";
+@import url(font-awesome.min.css);
+
 body {
     margin: 60px auto;
     width: 70%;
@@ -40,4 +43,26 @@ ul.posts {
 
 ul.posts li {
     list-style: none;
+}
+
+/* Fiddling with the icons */
+
+
+ul.icons {
+    cursor: default;
+    list-style: none;
+    padding-left: 0;
+}
+
+ul.icons li {
+    display: inline-block;
+    padding: 0 1em 0 0;
+}
+
+ul.icons li:last-child {
+    padding-right: 0;
+}
+
+ul.icons li .icon:before {
+    font-size: 2em;
 }
