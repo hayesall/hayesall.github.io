@@ -17,7 +17,7 @@ github_username:  batflyer
 markdown: kramdown
 highlighter: rogue
 
-theme: minimal-mistakes-jekyll
+theme: minima
 gems:
   - jekyll-feed
   - json

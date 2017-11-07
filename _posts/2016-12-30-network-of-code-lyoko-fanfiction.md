@@ -5,8 +5,6 @@ description: Network of Code Lyoko Fanfiction from FanFiction.net and a search e
 date: 2016-12-30
 ---
 
-## TFIDF and PageRank for FanFiction
-
 This was originally part of a final project for Search Information, but my fascination with network visualization cropped up here and I thought it was worth sharing. This is a condensed version of the [full article](https://batflyer.github.io/CLFanfictionSearchEngine/), and naturally the code is available on [GitHub](https://github.com/batflyer/CLFanFictionSearchEngine).
 
 <img src="https://raw.githubusercontent.com/batflyer/CLFanfictionSearchEngine/master/media/directed-fanfiction-graph.jpg" style="display: block; margin: auto; padding-top: 0.4em; padding-bottom: 0.4em;" class="img-responsive"/>
@@ -29,7 +27,7 @@ At the time this data was pulled, there were 6520 stories written in 15 language
 
 ### Code Highlights
 
-The question comes up occasionally for how to pull story IDs from FanFiction.Net, but this is really easy with a short bash script:
+The question comes up occasionally for how to pull story IDs from FanFiction.Net. This is straightforward with a short bash script:
 
 {% highlight bash linenos %}
 #!/bin/bash
