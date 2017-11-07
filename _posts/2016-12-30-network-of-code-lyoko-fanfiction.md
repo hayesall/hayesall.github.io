@@ -5,7 +5,9 @@ description: Network of Code Lyoko Fanfiction from FanFiction.net and a search e
 date: 2016-12-30
 ---
 
-This was originally part of a final project for Search Information, but my fascination with network visualization cropped up here and I thought it was worth sharing. This is a condensed version of the [full article](https://batflyer.github.io/CLFanFictionSearchEngine/), and naturally the code is available on [GitHub](https://github.com/batflyer/CLFanFictionSearchEngine).
+## TFIDF and PageRank for FanFiction
+
+This was originally part of a final project for Search Information, but my fascination with network visualization cropped up here and I thought it was worth sharing. This is a condensed version of the [full article](https://batflyer.github.io/CLFanfictionSearchEngine/), and naturally the code is available on [GitHub](https://github.com/batflyer/CLFanFictionSearchEngine).
 
 <img src="https://raw.githubusercontent.com/batflyer/CLFanfictionSearchEngine/master/media/directed-fanfiction-graph.jpg" style="display: block; margin: auto; padding-top: 0.4em; padding-bottom: 0.4em;" class="img-responsive"/>
 
@@ -21,34 +23,26 @@ As we move toward the center, we notice that the vast majority of stories and us
 
 <img src="https://raw.githubusercontent.com/batflyer/CLFanfictionSearchEngine/master/media/fan-network6.png" style="display: block; margin: auto; padding-top: 0.4em; padding-bottom: 0.4em;" class="img-responsive"/>
 
-{% highlight python linenos %}
-'''
-do block comments work?
-'''
-import os
-import random
-import re
+At the time this data was pulled, there were 6520 stories written in 15 languages over the course of twelve years. Totalling to a little over 30,000 chapters and millions of words.
 
-# Define a short class for raising exceptions to help with debugging.
+<img src="https://github.com/batflyer/CLFanfictionSearchEngine/blob/master/media/fan-network9.png?raw=true" style="display: block; margin: auto; padding-top: 0.4em; padding-bottom: 0.4em;" class="img-responsive"/>
 
-class ExceptionCase(Exception):
-    def handle(self):
-        print(self.message)
+### Code Highlights
 
-# Setup: parse the commandline input, perform checks, and import/parse the specified file.
+The question comes up occasionally for how to pull story IDs from FanFiction.Net, but this is really easy with a short bash script:
 
-class Setup:
-    
-    def __init__(self):
+{% highlight bash linenos %}
+#!/bin/bash
+# On a particular date, there were 285 pages of stories.
 
-        self.diagram_file = None # The diagram we're walking.
-        self.verbose = False     # -v, --verbose
-        self.nowalk = False      # -n, --nowalk
-        self.walk = True         # -w, --walk
-        self.shortest = False    # -s, --shortest
-        self.exhaustive = False  # -p, --exhaustive
-        self.random = False      # -r, --random
-        self.randomwalk = False  # -rw, --randomwalk
-        self.Nfeatures = None    # -n, --number
-        
+BASE="https://www.fanfiction.net/cartoon/Code-Lyoko/?&srt=1&r=10&p="
+for i in {1..285}; do
+    URL=$BASE$i
+	echo "$URL"
+	PAGE="`wget --no-check-certificate -q -O - $URL`"
+	echo "$PAGE" | grep "class=stitle" | cut -c117-137 | cut -d'/' -f 3 >> sids.txt
+	sleep 6
+done
 {% endhighlight %}
+
+This will create a URL by appending the number to the base (notice the `p=` at the end), downloading the page, finding the "class=stitle", cutting the sids out and appending them to the end of a file called "sids.txt," then waiting a few seconds in compliance with the terms of service.
