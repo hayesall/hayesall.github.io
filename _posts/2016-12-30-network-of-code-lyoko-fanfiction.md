@@ -5,19 +5,7 @@ description: Network of Code Lyoko Fanfiction from FanFiction.net and a search e
 date: 2016-12-30
 ---
 
-Well. Finally got around to putting this old website together. Neat thing about it - powered by [Jekyll](http://jekyllrb.com) and I can use Markdown to author my posts. It actually is a lot easier than I thought it was going to be.
-
-[Full documentation on GitHub](https://github.com/batflyer/CLFanfictionSearchEngine)
-
-``` python
-def hello(args*):
-  print('Hello World!')
-```
-
-{% highlight python %}
-def hello(args*):
-  print("Hello World!")
-{% endhighlight %}
+This was originally part of a final project for Search Information, but my fascination with network visualization cropped up here and I thought it was worth sharing. This is a condensed version of the [full article](https://batflyer.github.io/CLFanFictionSearchEngine), and naturally the code is available on [GitHub](https://github.com/batflyer/CLFanFictionSearchEngine).
 
 {% highlight python linenos %}
 '''
