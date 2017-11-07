@@ -5,11 +5,21 @@ description: Network of Code Lyoko Fanfiction from FanFiction.net and a search e
 date: 2016-12-30
 ---
 
-This was originally part of a final project for Search Information, but my fascination with network visualization cropped up here and I thought it was worth sharing. This is a condensed version of the [full article](https://batflyer.github.io/CLFanFictionSearchEngine), and naturally the code is available on [GitHub](https://github.com/batflyer/CLFanFictionSearchEngine).
+This was originally part of a final project for Search Information, but my fascination with network visualization cropped up here and I thought it was worth sharing. This is a condensed version of the [full article](https://batflyer.github.io/CLFanFictionSearchEngine/), and naturally the code is available on [GitHub](https://github.com/batflyer/CLFanFictionSearchEngine).
 
-<img src="https://raw.githubusercontent.com/batflyer/CLFanfictionSearchEngine/master/media/directed-fanfiction-graph.jpg" style="display: block; margin: auto;">
+<img src="https://raw.githubusercontent.com/batflyer/CLFanfictionSearchEngine/master/media/directed-fanfiction-graph.jpg" style="display: block; margin: auto; padding-top: 0.4em; padding-bottom: 0.4em;" />
 
 In "fanfic world" there are users and stories. Users can review fanfics and write fanfics. Each of these are shown with a directed edge: stories point to their authors, authors point to their stories, and readers point to stories they reviewed. The challenge is to decide which fanfics are relevant based on keywords, and which fanfics are most popular based on PageRank.
+
+A single-edge shows a review, a double-edge shows authorship, and a triple-edge means that the user wrote and reviewed their own story.
+
+Some stories receive only a small amount of attention.
+
+<img src="https://raw.githubusercontent.com/batflyer/CLFanfictionSearchEngine/master/media/fan-network2.png" style="display: block; margin: auto; padding-top: 0.4em; padding-bottom: 0.4em;" />
+
+As we move toward the center, we notice that the vast majority of stories and users are highly-connected.
+
+<img src="https://raw.githubusercontent.com/batflyer/CLFanfictionSearchEngine/master/media/fan-network6.png" style="display: block; margin: auto; padding-top: 0.4em; padding-bottom: 0.4em;" />
 
 {% highlight python linenos %}
 '''
