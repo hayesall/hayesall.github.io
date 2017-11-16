@@ -13,6 +13,16 @@ h1 {
     font-size: 0.8em;
 }
 
+.cvheading {
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.condensed {
+    font-size: 0.7em;
+    color: #555;
+    line-height: 1.2em;
+}
+
 p {
     font-size: 1.1em;
     line-height: 1.4em;
