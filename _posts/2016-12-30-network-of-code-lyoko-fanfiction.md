@@ -37,10 +37,10 @@ The question comes up occasionally for how to pull story IDs from FanFiction.Net
 BASE="https://www.fanfiction.net/cartoon/Code-Lyoko/?&srt=1&r=10&p="
 for i in {1..285}; do
     URL=$BASE$i
-	echo "$URL"
-	PAGE="`wget --no-check-certificate -q -O - $URL`"
-	echo "$PAGE" | grep "class=stitle" | cut -c117-137 | cut -d'/' -f 3 >> sids.txt
-	sleep 6
+    echo "$URL"
+    PAGE="`wget --no-check-certificate -q -O - $URL`"
+    echo "$PAGE" | grep "class=stitle" | cut -c117-137 | cut -d'/' -f 3 >> sids.txt
+    sleep 6
 done
 {% endhighlight %}
 

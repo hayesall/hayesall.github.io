@@ -1,12 +1,18 @@
 @charset "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Roboto);
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+}
+
+h3 {
+    font-family: 'Roboto';
+    font-weight: normal;
 }
 
 h1 {
     font-size: 2em;
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+    font-family: 'Helvetica', 'Arial', 'Sans-Serif';
 }
 
 .cv {
