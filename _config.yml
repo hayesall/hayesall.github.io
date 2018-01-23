@@ -15,7 +15,10 @@ github_username:  batflyer
 
 # Build settings
 markdown: kramdown
-highlighter: rogue
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rogue
 
 theme: minima
 gems:
