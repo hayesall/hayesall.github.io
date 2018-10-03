@@ -1,5 +1,6 @@
 ---
 layout: media
+permalink: /punchcards/
 title: Punchcards
 description: I have measured my life in coffee spoons.
 share: false
