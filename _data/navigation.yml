@@ -1,0 +1,14 @@
+# Site navigation links
+
+- title: "CV"
+  url: /cv/
+  excerpt: Education, Experience, and Publications
+  image:
+- title: "Software"
+  url: /software/
+  excerpt: Highlights from some of the projects I work on.
+  image:
+- title: "Teaching"
+  url: /teaching/
+  excerpt: Office Hours and Classes
+  image:

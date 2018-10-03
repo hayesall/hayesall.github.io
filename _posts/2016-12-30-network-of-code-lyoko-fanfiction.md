@@ -1,9 +1,11 @@
 ---
-layout: post
+layout: article
 title: "Network of Code Lyoko FanFiction"
 description: Network of Code Lyoko Fanfiction from FanFiction.net and a search engine to explore it.
 date: 2016-12-30
 excerpt: 6520 stories written in 15 languages over the course of twelve years; a fanfiction community visualized.
+image:
+  teaser: teaser/directed_fanfiction_graph.jpg
 ---
 
 This was originally part of a final project for Search Informatics, but my fascination with network visualization cropped up here and I thought it was worth sharing. This is a condensed version of the [full article](https://batflyer.github.io/CLFanfictionSearchEngine/), and naturally the code is available on [GitHub](https://github.com/batflyer/CLFanFictionSearchEngine).

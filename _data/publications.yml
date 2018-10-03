@@ -1,0 +1,23 @@
+- authors: Alexander L. Hayes, Mayukh Das, Phillip Odom, and Sriraam Natarajan
+  year: 2017
+  title: "User Friendly Automatic Construction of Background Knowledge: Mode Construction from ER Diagrams"
+  venue: Knowledge Capture Conference (K-CAP '17)
+  date: December 4-6, 2017
+  location: Austin, TX, USA
+  doi: https://doi.org/10.1145/3148011.3148027
+  code: https://github.com/starling-lab/Walk-ER/
+  pdf: https://starling.utdallas.edu/assets/pdfs/KCAP17Mode.pdf
+- authors: Alexander Hayes, Savannah Smith, Ciabhan Connelly, Devendra Dhami, and Sriraam Natarajan
+  year: 2016
+  title: "Predicting Drug-Drug Interactions: Combining Machine Learning and Natural Language Processing"
+  venue: ProHealth REU, School of Informatics and Computing, Indiana University
+  date: July 2016
+  location: Bloomington, IN, USA
+  code: https://github.com/batflyer/DrugInteractionDiscovery
+  poster: https://raw.githubusercontent.com/batflyer/DrugInteractionDiscovery/master/Overview/Poster/Drug-Drug%20Interactions%20Poster.png
+- authors: Aaron Porter and Alexander Hayes
+  year: 2016
+  title: "Stress-Induced Video Capture: Forensic Capture for People with Visual Impairments"
+  venue: School of Informatics and Computer Science Spring Research Symposium
+  date: April 2016
+  location: Bloomington, IN, USA
