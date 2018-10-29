@@ -1,0 +1,8 @@
+# Footer navigation links
+
+- title: "Home"
+  url: /
+- title: "CV"
+  url: /cv/
+- title: "Teaching"
+  url: /teaching/

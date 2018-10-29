@@ -1,0 +1,10 @@
+# Site navigation links
+
+- title: "CV"
+  url: /cv/
+  excerpt: Education, Experience, and Publications
+  image:
+- title: "Teaching"
+  url: /teaching/
+  excerpt: Office Hours and Classes
+  image:

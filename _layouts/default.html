@@ -1,38 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% if page.title %}{{ page.title }} • {% endif %}{{ site.title }}</title>
+    {% if page.excerpt %}<meta name="description" content="{{ page.excerpt | strip_html }}">{% endif %}
+    {% if page.tags %}<meta name="keywords" content="{{ page.tags | join: ', ' }}">{% endif %}
+    {% if page.author %}
+      {% assign author = site.data.authors[page.author] %}{% else %}{% assign author = site.owner %}
+    {% endif %}
+    {% include open-graph.html %}
 
-  {% include head.html %}
-  
-  <body>
-    
-    {% include analytics.html %}
-    
-    <div class="container">
-      <div class="header clearfix">
-	
-	<nav><ul class="nav nav-pills pull-right">
-	    <li role="presentation"><a href="/cv/">CV</a></li>
-	    <li role="presentation"><a href="/publications/">Publications</a></li>
-	    <li role="presentation"><a href="/blog/">Blog</a></li>
-	</ul></nav>
-	<h3 class="text-muted"><a href="/" style="padding-left: 0.2em;">Alexander L. Hayes</a></h3>
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
 
-	</div><!-- /.header clearflix -->
+    <link href="{{ site.url }}/atom.xml" type="application/atom+xml" rel="alternate" title="{{ site.title }} Atom Feed">
+    <link href="{{ site.url }}/sitemap.xml" type="application/xml" rel="sitemap" title="Sitemap">
 
-      <div class="inner cover">
-	{{ content }}
-      </div>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="cleartype" content="on">
 
-    </div><!-- /.container -->
+    <link rel="stylesheet" href="{{ site.url }}/css/main.css">
+    <!-- HTML5 Shiv and Media Query Support for IE -->
+    <!--[if lt IE 9]>
+      <script src="{{ site.url }}/js/vendor/html5shiv.min.js"></script>
+      <script src="{{ site.url }}/js/vendor/respond.min.js"></script>
+    <![endif]-->
 
-    <footer class="fixed-bottom" style="position: fixed; height: 40px; bottom: 0; width: 100%; background-color: white; padding-top: 3px; text-align: center;">
-      <a href="https://www.linkedin.com/in/alexanderlhayes/" class="icons fa fa-linkedin fa-2x" style="margin-left: 0.3em; margin-right: 0.3em"></a>
-      <a href="https://github.com/batflyer" class="icons fa fa-github fa-2x" style="margin-left: 0.3em; margin-right: 0.3em"></a>
-      <a href="https://twitter.com/alexanderlhayes" class="icons fa fa-twitter fa-2x" style="margin-left: 0.3em; margin-right: 0.3em"></a>
-    </footer>
-    
-    
-    {% include scripts.html %}
+  </head>
+
+  <body id="js-body">
+    {% include browser-upgrade.html %}
+    {% include header.html %}
+    {% include navigation-sliding.html %}
+
+    <div id="page-wrapper">
+      {{ content }}
+      {% include footer.html %}
+    </div>
+
+    <script src="{{ site.url }}/js/vendor/jquery-1.9.1.min.js"></script>
+    <script src="{{ site.url }}/js/main.js"></script>
 
   </body>
+
 </html>
