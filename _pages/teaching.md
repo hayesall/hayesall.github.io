@@ -6,15 +6,15 @@ share: false
 excerpt: "Office Hours and Classes"
 ---
 
-Office Hours
+I am currently a Research Assistant with the ProHealth Group, and will not be teaching this semester. If you need to set up an appointment, I can be reached at `hayesall@indiana.edu`.
+
+Past Courses
 ---
 
-Held during the following times, or prior to lecture. Please email me (Alexander.Hayes@utdallas.edu) regarding a possible meeting outside of these times.
+{% assign all_classes = site.classes | reverse %}
 
-Location: **ECSS 2.103B1**
-
-* Tuesday: 2:00 PM &ndash; 3:00 PM
-* Wednesday: 1:00 PM &ndash; 3:00 PM
-* Thursday: 2:00 PM &ndash; 3:00 PM
-
-<iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;showTabs=0&amp;mode=WEEK&amp;height=400&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=webmartian.com_e1fv1tmamc67lpfnfogh9uss6c%40group.calendar.google.com&amp;color=%23691426&amp;ctz=America%2FChicago" style="border-width:0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
+<ul>
+{% for page in all_classes %}
+  <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+{% endfor %}
+</ul>
