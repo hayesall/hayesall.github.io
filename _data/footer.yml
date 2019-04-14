@@ -2,6 +2,8 @@
 
 - title: "Home"
   url: /
+- title: "Blog"
+  url: /blog/
 - title: "CV"
   url: /cv/
 - title: "Teaching"

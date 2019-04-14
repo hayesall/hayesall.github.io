@@ -1,5 +1,9 @@
 # Site navigation links
 
+- title: "Blog"
+  url: /blog/
+  excerpt: Short thoughts worth sharing
+  image:
 - title: "CV"
   url: /cv/
   excerpt: Education, Experience, and Publications
