@@ -1,7 +1,7 @@
 # Site wide configuration
 
-title: "Alexander L. Hayes"
-description: "Alexander L. Hayes &mdash; Health Informatics Ph.D. Student with the Proactive Health Informatics Group (ProHealth) at the School of Informatics, Computing, and Engineering (SICE) at Indiana University, Bloomington (IU)."
+title: "hayesall.com"
+description: "Alexander L. Hayes • Home • hayesall.com"
 logo: # 120x120 px default image used for Twitter summary card
 teaser: # 400x250 px default teaser image used in image archive grid
 locale: en
@@ -22,6 +22,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
+  - jekyll-redirect-from
 
 
 # Site owner
@@ -33,7 +34,7 @@ owner:
     ad-client:
     ad-slot:
     analytics: UA-99296192-1
-  bio:
+  bio: "Ph.D. Student at Indiana University Bloomington"
   avatar: bio-photo.jpg # 160x160 px image for author byline
   disqus-shortname:
 
