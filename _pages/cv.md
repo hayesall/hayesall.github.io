@@ -1,17 +1,20 @@
 ---
-layout: article
+layout: archive
 permalink: /cv/
-title: "Curriculum Vitae"
+title: "Alexander L. Hayes • Curriculum Vitae"
 description: This should be appearing at the top of the page.
-excerpt: Teaching Assistant and Ph.D. Student at the University of Texas at Dallas
+excerpt: Alexander L. Hayes Curriculum Vitae
 share: false
 ---
 
-Alexander.Hayes@utdallas.edu  
-Erik Jonsson School of Engineering & Computer Science  
-The University of Texas at Dallas  
-800 W. Campbell; MS EC31  
-Richardson, TX 75080 USA  
+# Curriculum Vitae
+
+**hayesall@iu.edu**  
+Indiana University Bloomington  
+School of Informatics, Computing, and Engineering (SICE)  
+ProHealth Lab: Informatics East 255  
+918 E. 10th Street  
+Bloomington, IN 47401  
 
 Technical Skills
 ---
@@ -21,9 +24,9 @@ Python, Shell Scripting, Linux/Unix, C, Racket, Git, Continuous Integration (CI)
 Education
 ---
 
-**Doctor of Philosophy (Ph.D.) Computer Science**  
-Erik Jonnson School of Engineering & Computer Science  
-The University of Texas at Dallas, Richardson, TX
+**Doctor of Philosophy (Ph.D.) Health Informatics**  
+School of Informatics, Computing, and Engineering  
+Indiana University, Bloomington, IN
 
 
 **Bachelor of Science (B.S.) Computer Science**  
