@@ -67,7 +67,7 @@ svg.append("g")
   .enter().append("path")
     .attr("d", pathMonth);
 
-d3.csv("https://gist.githubusercontent.com/batflyer/6b4c82b78e039ad47cad338fe0bbce53/raw/LabTimes.csv", function(error, csv) {
+d3.csv("https://gist.githubusercontent.com/hayesall/6b4c82b78e039ad47cad338fe0bbce53/raw/LabTimes.csv", function(error, csv) {
   if (error) throw error;
 
   var data = d3.nest()
