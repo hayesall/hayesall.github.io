@@ -3,3 +3,5 @@ js/plugins/* linguist-vendored
 js/vendor/* linguist-vendored
 js/main.js linguist-vendored
 _sass/* linguist-vendored
+_sass/_tile-list.scss linguist-vendored=false
+_sass/_tutorials.scss linguist-vendored=false
