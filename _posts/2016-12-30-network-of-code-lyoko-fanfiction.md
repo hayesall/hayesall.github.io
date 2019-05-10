@@ -12,9 +12,9 @@ image:
   teaser: teaser/directed_fanfiction_graph.jpg
 ---
 
-This was originally part of a final project for Search Informatics, but my fascination with network visualization cropped up here and I thought it was worth sharing. This is a condensed version of the [full article](https://batflyer.github.io/CLFanfictionSearchEngine/), and naturally the code is available on [GitHub](https://github.com/batflyer/CLFanFictionSearchEngine).
+This was originally part of a final project for Search Informatics, but my fascination with network visualization cropped up here and I thought it was worth sharing. This is a condensed version of the [full article](https://hayesall.github.io/CLFanfictionSearchEngine/), and naturally the code is available on [GitHub](https://github.com/hayesall/CLFanFictionSearchEngine).
 
-<img src="https://raw.githubusercontent.com/batflyer/CLFanfictionSearchEngine/master/media/directed-fanfiction-graph.jpg" style="display: block; margin: auto; padding-top: 0.4em; padding-bottom: 0.4em;" class="img-responsive"/>
+<img src="https://raw.githubusercontent.com/hayesall/CLFanfictionSearchEngine/master/media/directed-fanfiction-graph.jpg" style="display: block; margin: auto; padding-top: 0.4em; padding-bottom: 0.4em;" class="img-responsive"/>
 
 In "fanfic world" there are users and stories. Users can review fanfics and write fanfics. Each of these are shown with a directed edge: stories point to their authors, authors point to their stories, and readers point to stories they reviewed. The challenge is to decide which fanfics are relevant based on keywords, and which fanfics are most popular based on PageRank.
 
@@ -22,15 +22,15 @@ A single-edge shows a review, a double-edge shows authorship, and a triple-edge 
 
 Some stories receive only a small amount of attention.
 
-<img src="https://raw.githubusercontent.com/batflyer/CLFanfictionSearchEngine/master/media/fan-network2.png" style="display: block; margin: auto; padding-top: 0.4em; padding-bottom: 0.4em;" class="img-responsive"/>
+<img src="https://raw.githubusercontent.com/hayesall/CLFanfictionSearchEngine/master/media/fan-network2.png" style="display: block; margin: auto; padding-top: 0.4em; padding-bottom: 0.4em;" class="img-responsive"/>
 
 As we move toward the center, we notice that the vast majority of stories and users are highly-connected.
 
-<img src="https://raw.githubusercontent.com/batflyer/CLFanfictionSearchEngine/master/media/fan-network6.png" style="display: block; margin: auto; padding-top: 0.4em; padding-bottom: 0.4em;" class="img-responsive"/>
+<img src="https://raw.githubusercontent.com/hayesall/CLFanfictionSearchEngine/master/media/fan-network6.png" style="display: block; margin: auto; padding-top: 0.4em; padding-bottom: 0.4em;" class="img-responsive"/>
 
 At the time this data was pulled, there were 6520 stories written in 15 languages over the course of twelve years. Totalling to a little over 30,000 chapters and millions of words.
 
-<img src="https://github.com/batflyer/CLFanfictionSearchEngine/blob/master/media/fan-network9.png?raw=true" style="display: block; margin: auto; padding-top: 0.4em; padding-bottom: 0.4em;" class="img-responsive"/>
+<img src="https://github.com/hayesall/CLFanfictionSearchEngine/blob/master/media/fan-network9.png?raw=true" style="display: block; margin: auto; padding-top: 0.4em; padding-bottom: 0.4em;" class="img-responsive"/>
 
 ### Code Highlights
 

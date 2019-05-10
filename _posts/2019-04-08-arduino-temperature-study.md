@@ -36,7 +36,7 @@ course.
 
 This will describe some of the hands-on portions of the data collection and
 analysis. A shorter overview and all code is available on my
-[GitHub](https://github.com/batflyer/Informatics-Temperature-Study/).
+[GitHub](https://github.com/hayesall/Informatics-Temperature-Study/).
 
 ---
 
@@ -49,10 +49,10 @@ with minor differences in the wiring and tweaking the output so it could be
 viewed from my laptop.
 
 <figure>
-  <img src="https://raw.github.com/batflyer/Informatics-Temperature-Study/master/docs/svg/schematic.svg?sanitize=true" />
+  <img src="https://raw.github.com/hayesall/Informatics-Temperature-Study/master/docs/svg/schematic.svg?sanitize=true" />
   <figcaption>
     Schematic showing how to wire the RedBoard and the TMP102. This schematic was
-    created as a <a href="https://github.com/batflyer/Informatics-Temperature-Study/blob/master/docs/svg/schematic.txt">text file</a>
+    created as a <a href="https://github.com/hayesall/Informatics-Temperature-Study/blob/master/docs/svg/schematic.txt">text file</a>
     then rendered with <a href="https://github.com/ivanceras/svgbob">svgbob</a>.
   </figcaption>
 </figure>
@@ -61,8 +61,8 @@ The wire colors are not important, but I listed them in the schematic so they
 would be the same as they were in the photos.
 
 <figure class="half">
-  <img src="https://raw.githubusercontent.com/batflyer/Informatics-Temperature-Study/master/docs/image/redboard/board.jpg" />
-  <img src="https://raw.githubusercontent.com/batflyer/Informatics-Temperature-Study/master/docs/image/redboard/sensor.jpg" />
+  <img src="https://raw.githubusercontent.com/hayesall/Informatics-Temperature-Study/master/docs/image/redboard/board.jpg" />
+  <img src="https://raw.githubusercontent.com/hayesall/Informatics-Temperature-Study/master/docs/image/redboard/sensor.jpg" />
 </figure>
 
 # Code and Study Assumptions
@@ -98,7 +98,7 @@ void loop() {
 {% endraw %}
 {% endhighlight %}
 
-<figcaption>GitHub: <a href="https://github.com/batflyer/Informatics-Temperature-Study/blob/b51b3091b023be61e10615fc41274c8d079aaa3d/src/main.ino#L28-L57">src/main.ino#L28-L57</a></figcaption>
+<figcaption>GitHub: <a href="https://github.com/hayesall/Informatics-Temperature-Study/blob/b51b3091b023be61e10615fc41274c8d079aaa3d/src/main.ino#L28-L57">src/main.ino#L28-L57</a></figcaption>
 
 To understand some of the local temperatures in and around the IU Informatics
 building, we decided to record temperature at a few different locations and
@@ -126,8 +126,8 @@ Horizontal lines were added to show certain time points which may be of
 interest, such as when I arrived at an outdoor bench and when I left the bench.
 
 <figure>
-  <img src="https://raw.githubusercontent.com/batflyer/Informatics-Temperature-Study/master/docs/image/temperature_graphs.png">
-  <figcaption>GitHub: <a href="https://github.com/batflyer/Informatics-Temperature-Study/blob/b51b3091b023be61e10615fc41274c8d079aaa3d/src/plot_data.py#L44-L68">src/plot_data.py#L44-L68</a></figcaption>
+  <img src="https://raw.githubusercontent.com/hayesall/Informatics-Temperature-Study/master/docs/image/temperature_graphs.png">
+  <figcaption>GitHub: <a href="https://github.com/hayesall/Informatics-Temperature-Study/blob/b51b3091b023be61e10615fc41274c8d079aaa3d/src/plot_data.py#L44-L68">src/plot_data.py#L44-L68</a></figcaption>
 </figure>
 
 The plot that I found most interesting was the last one, when I walked through

@@ -1,0 +1,11 @@
+<article class="tile_list">
+  <a href="{{ site.url }}{{ publication.url }}" title="{{ publication.title }}" class="column" style="text-align: center;">
+    <span class="faded faded-bottom"><img alt="teaser" src="{{ site.url }}/images/{{ publication.image.teaser }}" /></span>
+  </a>
+  <div class="column wiggle">
+    <a href="{{ site.url }}{{ publication.url }}" title="{{ publication.title }}">
+      <h2 class="post-title" itemprop="name">{{ publication.title }}</h2>
+    </a>
+    <p class="post-excerpt" itemprop="description">{{ publication.excerpt | strip_html | truncate: 300 }}</p>
+  </div>
+</article>

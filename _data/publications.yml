@@ -13,8 +13,8 @@
   venue: ProHealth REU, School of Informatics and Computing, Indiana University
   date: July 2016
   location: Bloomington, IN, USA
-  code: https://github.com/batflyer/DrugInteractionDiscovery
-  poster: https://raw.githubusercontent.com/batflyer/DrugInteractionDiscovery/master/Overview/Poster/Drug-Drug%20Interactions%20Poster.png
+  code: https://github.com/hayesall/DrugInteractionDiscovery
+  poster: https://raw.githubusercontent.com/hayesall/DrugInteractionDiscovery/master/Overview/Poster/Drug-Drug%20Interactions%20Poster.png
 - authors: Aaron Porter and Alexander Hayes
   year: 2016
   title: "Stress-Induced Video Capture: Forensic Capture for People with Visual Impairments"

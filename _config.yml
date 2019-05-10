@@ -44,6 +44,9 @@ collections:
   classes:
     permalink: /teaching/:title/
     output: true
+  publications:
+    permalink: /publications/:title/
+    output: true
 
 include:
   - .htaccess
