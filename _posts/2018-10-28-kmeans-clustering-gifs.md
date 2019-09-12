@@ -6,6 +6,7 @@ date: 2018-10-28
 excerpt: k-means clustering can be used on images to automatically perform color quantization. This demonstrates how to cluster colors in an animation.
 categories: blog
 tags: ["machine-learning"]
+comments: true
 redirect_from:
   - /kmeans-clustering-gifs/
 image:

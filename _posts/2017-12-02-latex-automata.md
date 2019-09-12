@@ -6,6 +6,7 @@ date: 2017-12-02
 excerpt: This short guide collects some examples of drawing finite state machines using the Tikz LaTeX library.
 categories: blog
 tags: ["automata"]
+comments: true
 redirect_from:
   - /latex-automata/
 image:
