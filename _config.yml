@@ -47,6 +47,9 @@ collections:
   publications:
     permalink: /publications/:title/
     output: true
+  software:
+    permalink: /software/:title/
+    output: true
 
 include:
   - .htaccess
@@ -73,6 +76,7 @@ exclude:
   - log
   - node_modules
   - package.json
+  - package-lock.json
   - spec
   - tmp
   - vendor
