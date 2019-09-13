@@ -9,8 +9,10 @@ excerpt: ""
 ---
 
 # Blog
-<br /><br />
+<br />
 
+<div class="tiles">
 {% for post in site.posts %}
-  {% include post-list.html %}
+	{% include post-grid.html %}
 {% endfor %}
+</div><!-- /.tiles -->
