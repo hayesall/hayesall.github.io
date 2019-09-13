@@ -2,7 +2,7 @@
 layout: article
 title: "Jekyll Blogging on Chromebooks"
 description: "Fix 'This site can't be reached, 127.0.0.1 refused to connect' error when Jekyll blogging on Chromebooks."
-date: 2019-09-12
+date: 2019-09-13
 excerpt: >-
   This site can't be reached? 127.0.0.1 refused to connect?
   How does Jekyll development on Chromebook differ from
