@@ -28,6 +28,7 @@ plugins:
 # Site owner
 owner:
   name: Alexander L. Hayes
+  web: https://hayesall.com
   email: alexander@batflyer.net
   twitter: alexanderlhayes
   google:
@@ -35,7 +36,7 @@ owner:
     ad-slot:
     analytics: UA-99296192-1
   bio: "Ph.D. Student at Indiana University Bloomington"
-  avatar: bio-photo.jpg # 160x160 px image for author byline
+  avatar: Alexander_Hayes_bio.png # 160x160 px image for author byline
   disqus-shortname: hayesall-com
 
 # Collections
@@ -51,7 +52,6 @@ collections:
 include:
   - .htaccess
   - _pages
-  - ["_pages"]
 exclude:
   - "*.less"
   - "*.sublime-project"
