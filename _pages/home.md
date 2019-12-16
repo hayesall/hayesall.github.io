@@ -21,6 +21,7 @@ excerpt: "Alexander L. Hayes is a Health Informatics Ph.D. Student at Indiana Un
 <div class="homepage-third">
   <p>Alexander L. Hayes is a Health Informatics Ph.D. Student working with <a href="http://wphomes.soic.indiana.edu/connelly/">Professor Kay Connelly</a> and the <a href="https://prohealth.sice.indiana.edu/">Proactive Health Informatics Department</a> on the <a href="https://grandchallenges.iu.edu/precision-health/index.html">Precision Health Initiative</a>. His interests are in statistical relational artificial intelligence (STARAI), systems, open source development&mdash;and their applications toward solving real-world Health Informatics problems. He holds a B.S. Computer Science from Indiana University, and continues to collaborate with <a href="http://utdallas.edu/~sxn177430/">Professor Sriraam Natarajan</a> and his colleagues from the <a href="https://starling.utdallas.edu">StARLinG Lab</a> at the University of Texas at Dallas.</p>
   <p>He is currently working in the nuMoM2b (new-mom-2-be) data set, where one of the aims is to model the development of gestational diabetes. Additional information about this project is included in the <a href="https://doc.numom2b.org/en/latest/">nuMoM2b preprocessing documentation</a>.</p>
+  <p><span style="font-weight: bold">Contact</span>: hayesall@iu.edu</p>
 </div>
 
 <div class="homepage-fourth">
@@ -36,7 +37,9 @@ excerpt: "Alexander L. Hayes is a Health Informatics Ph.D. Student at Indiana Un
 <h2>Updates</h2>
 
 <ul>
-<li>Spring 2018: I am transferring to work as a Research Assistant with the Proactive Health Informatics (ProHealth) Department within the School of Informatics, Computing, and Engineering (SICE) at Indiana University, Bloomington.</li>
+<li><a href="https://github.com/hayesall/srlearn/">srlearn: A Python Library for Gradient-Boosted Statistical Relational Models</a> was accepted at the Ninth International Workshop on Statistical Relational AI</li>
+<li>2019-06-14: I am attending International Conference of Machine Learning (ICML) in Long Beach, California.</li>
+<li>Spring 2019: I am transferring to work as a Research Assistant with the Proactive Health Informatics (ProHealth) Department within the School of Informatics, Computing, and Engineering (SICE) at Indiana University, Bloomington.</li>
 <li>Fall 2018: I will be a Teaching Assistant for Automata Theory (CS 4384.001)</li>
 </ul>
 
