@@ -1,0 +1,38 @@
+---
+layout: default_latex
+---
+
+<div id="main" role="main">
+	<article class="wrap" itemscope itemtype="https://schema.org/CreativeWork">
+		<div class="page-title">
+			<h1>
+				<span itemprop="name">{{ page.title }}</span>
+			</h1>
+		</div>
+		{% include breadcrumbs.html %}
+		{% if page.image.feature %}
+		<div class="page-feature">
+			<div class="page-image">
+				<img src="{{ site.url }}/images/{{ page.image.feature }}" class="page-feature-image" alt="{{ page.title }}" itemprop="image">
+				{% if page.image.credit %}{% include image-credit.html %}{% endif %}
+			</div><!-- /.page-image -->
+		</div><!-- /.page-feature -->
+		{% endif %}
+
+		<div class="inner-wrap">
+			<div id="content" class="page-content" itemprop="articleBody">
+				{{ content }}
+				<hr />
+				<footer class="page-footer">
+					{% if page.categories %}{% include page-author.html %}{% endif %}
+					{% if page.share != false %}{% include share-this.html %}{% endif %}
+					{% include page-meta.html %}
+				</footer><!-- /.footer -->
+				<aside>
+					{% if page.comments == true and jekyll.environment == "production" %}{% include comments.html %}{% endif %}
+				</aside>
+			</div><!-- /.content -->
+		</div><!-- /.inner-wrap -->
+		{% if page.ads == true %}<div class="ads">{% include advertising.html %}</div><!-- /.ads -->{% endif %}
+	</article><!-- ./wrap -->
+</div><!-- /#main -->

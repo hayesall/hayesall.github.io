@@ -2,13 +2,14 @@
 layout: article
 title: "User Friendly Automatic Construction of Background Knowledge: Mode Construction from ER Diagrams"
 date: 2017-12-04
+categories: ["publications"]
 excerpt: >-
   Inductive Logic Programming systems allow domain experts to provide
   background knowledge to constrain to search space of hypotheses. This
   machine learning interface includes an algorithm for translating these
   constraints from Entity-Relationship Diagrams.
 image:
-  teaser: /publications/kcap2017_hayes_user_friendly.png
+  teaser: publications/kcap2017_hayes_user_friendly.png
 ---
 
 [![](https://img.shields.io/badge/DOI-10.1145%2F3148011.3148027-blue)](https://doi.org/10.1145/3148011.3148027)
@@ -17,7 +18,7 @@ image:
 
 Explore further on [GitHub](https://github.com/hayesall/Walk-ER/).
 
-- [Read Online](https://starling.utdallas.edu/assets/pdfs/KCAP17Mode.pdf)
+- [Read Online - <i style="color: red" class="icons fa fa-file"> .pdf</i>](/publications/construction-background-knowledge.pdf)
   - [ACM Digital Library](https://dl.acm.org/citation.cfm?doid=3148011.3148027)
 - [Download a PDF](https://github.com/hayesall/Walk-ER/raw/master/TeX_src/UserFriendlyAutomatedConstructionOfBackgroundKnowledge.pdf)
 
