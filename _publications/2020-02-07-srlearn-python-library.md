@@ -15,7 +15,7 @@ image:
   teaser: publications/starai2020_hayes-srlearn-python-library.png
 ---
 
-**Accepted** at the [Ninth International Workshop on Statistical Relational AI](http://www.starai.org/2020/).
+**Accepted** at the [Ninth International Workshop on Statistical Relational AI - StarAI 2020](http://www.starai.org/2020/).
 
 ## Paper
 
