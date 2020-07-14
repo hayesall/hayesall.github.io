@@ -3,36 +3,76 @@ layout: default_latex
 ---
 
 <div id="main" role="main">
-	<article class="wrap" itemscope itemtype="https://schema.org/CreativeWork">
-		<div class="page-title">
-			<h1>
-				<span itemprop="name">{{ page.title }}</span>
-			</h1>
-		</div>
-		{% include breadcrumbs.html %}
-		{% if page.image.feature %}
-		<div class="page-feature">
-			<div class="page-image">
-				<img src="{{ site.url }}/images/{{ page.image.feature }}" class="page-feature-image" alt="{{ page.title }}" itemprop="image">
-				{% if page.image.credit %}{% include image-credit.html %}{% endif %}
-			</div><!-- /.page-image -->
-		</div><!-- /.page-feature -->
-		{% endif %}
+  <article class="wrap">
+    <div class="page-title">
+      <h1>
+        <span itemprop="name">{{ page.title }}</span>
+      </h1>
+    </div>
+    {% include breadcrumbs.html %}
+    {% if page.image.feature %}
+    <div class="page-feature">
+      <div class="page-image">
+        <img src="{{ site.url }}/images/{{ page.image.feature }}" class="page-feature-image" alt="{{ page.title }}" itemprop="image">
+          {% if page.image.credit %}{% include image-credit.html %}{% endif %}
+        </div><!-- /.page-image -->
+      </div><!-- /.page-feature -->
+    {% endif %}
 
-		<div class="inner-wrap">
-			<div id="content" class="page-content" itemprop="articleBody">
-				{{ content }}
-				<hr />
-				<footer class="page-footer">
-					{% if page.categories %}{% include page-author.html %}{% endif %}
-					{% if page.share != false %}{% include share-this.html %}{% endif %}
-					{% include page-meta.html %}
-				</footer><!-- /.footer -->
-				<aside>
-					{% if page.comments == true and jekyll.environment == "production" %}{% include comments.html %}{% endif %}
-				</aside>
-			</div><!-- /.content -->
-		</div><!-- /.inner-wrap -->
-		{% if page.ads == true %}<div class="ads">{% include advertising.html %}</div><!-- /.ads -->{% endif %}
-	</article><!-- ./wrap -->
+    <div class="inner-wrap">
+      <div id="content" class="page-content">
+        {{ content }}
+        <hr />
+        <footer class="page-footer">
+        {% if page.categories %}{% include page-author.html %}{% endif %}
+        {% if page.share != false %}{% include share-this.html %}{% endif %}
+        {% include page-meta.html %}
+        </footer><!-- /.footer -->
+        <aside>
+        {% if page.comments == true and jekyll.environment == "production" %}{% include comments.html %}{% endif %}
+        </aside>
+      </div><!-- /.content -->
+    </div><!-- /.inner-wrap -->
+    {% if page.ads == true %}<div class="ads">{% include advertising.html %}</div><!-- /.ads -->{% endif %}
+  </article><!-- ./wrap -->
 </div><!-- /#main -->
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@graph": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "{{ page.title }}",
+      "headline": "{{ page.title }}",
+      "author": [
+        {% for author in page.authors %}{% assign person = site.data.coauthors | where: "name", author | first %}{
+          "@type": "Person",
+          "name": "{{ author }}",
+          "url": "{{ person.url }}"
+        }{% if forloop.last == false %},{% endif %}{% endfor %}
+      ],
+      "sameAs": "{{ page.publication_url }}",
+      "datePublished": "{{ page.date | date: "%Y-%m-%dT%H:%M:%SZ" }}",
+      "dateModified": "{{ page.date | date: "%Y-%m-%dT%H:%M:%SZ" }}",
+      "url": "{{ site.url }}{{ page.url }}",
+      "mainEntityOfPage": "{{ site.url }}{{ page.url }}",
+      "abstract": "{{ page.abstract }}",
+      "image": "{{ site.url }}/images/{{ page.image.teaser }}",
+      "publisher": [{% assign venue = site.data.publishers | where: "name", page.publisher | first %}
+        {
+          "@type": "Organization",
+          "name": "{{ venue.name }}",
+          "url": "{{ venue.url }}",
+          "logo": [
+            {
+              "@type": "ImageObject",
+              "url": "{{ venue.logo_url }}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>

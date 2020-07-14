@@ -11,5 +11,6 @@
 		<time datetime="{{ page.date | date: "%Y-%m-%dT%H:%M:%SZ" }}" itemprop="datePublished">
 			{{ page.date | date: "%B %d, %Y" }}
 		</time>
+		<meta itemprop="dateCreated" content="{{ page.date | date: "%Y-%m-%dT%H:%M:%SZ" }}" />
 	</p>
 </div><!-- /.page-meta -->{% endif %}

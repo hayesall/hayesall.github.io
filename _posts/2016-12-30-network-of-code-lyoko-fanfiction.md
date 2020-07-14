@@ -11,6 +11,7 @@ redirect_from:
   - /network-of-code-lyoko-fanfiction/
 image:
   teaser: teaser/directed_fanfiction_graph.jpg
+  feature: feature/cl2.jpg
 ---
 
 This was originally part of a final project for Search Informatics, but my fascination with network visualization cropped up here and I thought it was worth sharing. This is a condensed version of the [full article](https://hayesall.github.io/CLFanfictionSearchEngine/), and naturally the code is available on [GitHub](https://github.com/hayesall/CLFanFictionSearchEngine).
