@@ -1,9 +1,9 @@
 ---
-layout: archive
+layout: homepage
 permalink: /
 title: "Alexander L. Hayes • Home"
 share: false
-excerpt: "Alexander L. Hayes is a Health Informatics Ph.D. Student at Indiana University (IU) Bloomington."
+excerpt: "Alexander L. Hayes is a Ph.D. Student at Indiana University (IU) Bloomington studying Health Informatics."
 ---
 
 <div itemscope itemtype="http://schema.org/Person">
@@ -79,8 +79,6 @@ excerpt: "Alexander L. Hayes is a Health Informatics Ph.D. Student at Indiana Un
       </p>
   </div>
 </div>
-
-<link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
 
 <div class="homepage-fourth">
 
