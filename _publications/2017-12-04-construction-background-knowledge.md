@@ -1,5 +1,5 @@
 ---
-layout: article
+layout: publication
 title: "User Friendly Automatic Construction of Background Knowledge: Mode Construction from ER Diagrams"
 date: 2017-12-04
 categories: ["publications"]
@@ -8,6 +8,21 @@ excerpt: >-
   background knowledge to constrain to search space of hypotheses. This
   machine learning interface includes an algorithm for translating these
   constraints from Entity-Relationship Diagrams.
+abstract: >-
+  One of the key advantages of Inductive Logic Programming systems is the
+  ability of the domain experts to provide background knowledge as modes that
+  allow for efficient search through the space of hypotheses. However, there
+  is an inherent assumption that this expert should also be an ILP expert to
+  provide effective modes. We relax this assumption by designing a graphical
+  user interface that allows the domain expert to interact with the system
+  using Entity Relationship diagrams. These interactions are used to construct
+  modes for the learning system. We evaluate our algorithm on a probabilistic
+  logic learning system where we demonstrate that the user is able to construct
+  effective background knowledge on par with the expert-encoded knowledge on
+  five data sets.
+authors: ["Alexander L. Hayes", "Mayukh Das", "Phillip Odom", "Sriraam Natarajan"]
+publication_url: https://doi.org/10.1145/3148011.3148027
+publisher: "Knowledge Capture Conference"
 image:
   teaser: publications/kcap2017_hayes_user_friendly.png
 ---

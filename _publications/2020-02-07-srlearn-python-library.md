@@ -11,6 +11,8 @@ abstract: >-
   We adapt the scikit-learn interface to this setting and provide examples for
   how this can be used to express learning and inference problems.
 authors: ["Alexander L. Hayes"]
+publication_url: "https://arxiv.org/abs/1912.08198"
+publisher: "arXiv"
 image:
   teaser: publications/starai2020_hayes-srlearn-python-library.png
 ---

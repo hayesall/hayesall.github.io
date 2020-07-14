@@ -6,9 +6,19 @@
 
 <div class="author-content">
 
-  <h3 class="author-name">{{ site.data.messages.locales[site.locale].writen_by }}
-    <a itemprop="publisher" href="{{ author.web }}"><span itemprop="author">{{ author.name }}</span></a>
+  <h3 itemscope itemprop="author" itemtype="http://schema.org/Person" class="author-name">
+    <a itemprop="url" href="{{ author.web }}">
+      <span itemprop="name">{{ author.name }}</span>
+    </a>
   </h3>
   <p class="author-bio">{{ author.bio }}</p>
+
+  <div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="HAYESALL Digital Library">
+    <meta itemprop="url" content="https://hayesall.com">
+    <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <meta itemprop="url" content="https://hayesall.com/favicon.ico">
+    </div>
+  </div>
 
 </div>

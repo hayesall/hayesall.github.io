@@ -12,9 +12,8 @@ tags: ["jekyll", "chromebook"]
 comments: true
 image:
   teaser: teaser/teaser_jekyll_chromebook.png
+  feature: blog/jekyll-chromebook/refused_to_connect.png
 ---
-
-<img src="/images/blog/jekyll-chromebook/refused_to_connect.png" style="border: 1px solid grey; display: block; margin-left: auto; margin-right: auto;" alt="Chrome error message: This site can't be reached. 127.0.0.1 refused to connect.">
 
 ## The simple solution:
 
