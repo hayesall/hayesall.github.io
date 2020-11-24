@@ -73,7 +73,7 @@ appreciated.
 Scripts for reproducing *Table 1* are contained in the
 [`experiments/` directory on GitHub](https://github.com/hayesall/srlearn-StarAI-2020-workshop/tree/master/experiments/).
 
-## Acknowledgements
+## Acknowledgments
 
 ALH is sponsored through Indiana University's "Precision Health Initiative"
 (PHI) Grand Challenge. ALH would like to thank

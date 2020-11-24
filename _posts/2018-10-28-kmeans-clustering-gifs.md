@@ -12,7 +12,7 @@ redirect_from:
   - /kmeans-clustering-gifs/
 image:
   teaser: teaser/kmeans_teaser.png
-  feature: teaser/kmeans_teaser.png
+  feature: feature/kmeans_feature.png
 ---
 
 One of the common demonstrations for k-means clustering is as a pre-processing step for image segmentation, or as an automatic way to perform color quantization.

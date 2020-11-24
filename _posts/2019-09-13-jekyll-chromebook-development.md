@@ -12,7 +12,7 @@ tags: ["jekyll", "chromebook"]
 comments: true
 image:
   teaser: teaser/teaser_jekyll_chromebook.png
-  feature: blog/jekyll-chromebook/refused_to_connect.png
+  feature: feature/refused_to_connect.jpg
 ---
 
 ## The simple solution:

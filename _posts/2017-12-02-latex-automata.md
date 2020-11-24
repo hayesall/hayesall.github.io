@@ -11,7 +11,7 @@ redirect_from:
   - /latex-automata/
 image:
   teaser: teaser/automata_teaser.png
-  feature: feature/automata_finite_state_diagrams.png
+  feature: feature/automata_finite_state_diagrams.jpg
 ---
 
 When I was TA'ing for Automata Theory, the in-browser finite-state machine creators I found tended to feel either a bit restricted or unable to generate high-quality automata images. Lo and behold, LaTeX already had a package which produced diagrams from a description.

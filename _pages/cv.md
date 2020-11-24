@@ -104,6 +104,7 @@ Department of Informatics and Computer Science
 
 ## Service - Open Source Contributions
 
+{:.no_toc}
 ### [`scikit-learn-contrib / imbalanced-learn`](https://github.com/scikit-learn-contrib/imbalanced-learn/)
 
 [`imbalanced-learn`](https://github.com/scikit-learn-contrib/imbalanced-learn/) "A Python package to Tackle the Curse of Imbalanced Datasets in Machine Learning"
@@ -121,6 +122,7 @@ Community questions I helped resolve:
 - [Why do Tomek Links take so long?](https://github.com/scikit-learn-contrib/imbalanced-learn/issues/567#issuecomment-490545013)
 - [Why does parallelism fail?](https://github.com/scikit-learn-contrib/imbalanced-learn/issues/560#issuecomment-478282569)
 
+{:.no_toc}
 ### [`microsoft / LightGBM`](https://github.com/microsoft/LightGBM/)
 
 [`LightGBM`](https://github.com/microsoft/LightGBM/) "A fast, distributed, high performance gradient boosting (GBT, GBDT, GBRT, GBM or MART) framework based on decision tree algorithms, used for ranking, classification and many other machine learning tasks."
@@ -140,6 +142,7 @@ Community questions I helped resolve:
 - [How to adapt the test build to use GitHub Actions?](https://github.com/microsoft/LightGBM/issues/2353#issuecomment-524862575)
 - [Why are pages not found when JavaScript is disable?](https://github.com/microsoft/LightGBM/issues/2300#issuecomment-516874783)
 
+{:.no_toc}
 ### [`google-research / arxiv-latex-cleaner`](https://github.com/google-research/arxiv-latex-cleaner)
 
 [`arxiv-latex-cleaner`](https://github.com/google-research/arxiv-latex-cleaner): "arXiv LaTeX Cleaner: Easily clean the LaTeX code of your paper to submit to arXiv"
