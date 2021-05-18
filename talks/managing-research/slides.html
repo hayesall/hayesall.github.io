@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>Managing Research</title>
+    <title>Managing Research: Data and Code</title>
     <link rel="stylesheet" href="./css/reveal.css" />
     <link rel="stylesheet" href="./css/theme/simple.css" id="theme" />
     <link rel="stylesheet" href="./css/highlight/github.css" />
@@ -24,7 +24,7 @@
 }
 </style>
 
-## **Managing Research**
+## **Managing Research: Data and Code**
 
 <br />
 
@@ -36,39 +36,96 @@ Ph.D. Student - https://hayesall.com
 
 <a href="https://prohealth.sice.indiana.edu"><img style="max-height: 50px;" class="plain" src="images/logos/ProHealthLogoClear.png"/></a>
 <a href="https://starling.utdallas.edu"><img style="max-height: 50px;" class="plain" src="images/logos/starling_logo.png"/></a>
-</script></section><section  data-markdown><script type="text/template">
-<!-- .slide: style="text-align: left;"> -->  
-### What have we *seen* already?
+</script></section>
+
+
+
+<section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left;" -->
+## **Itinerary**
+
+**Slides**: https://hayesall.com/talks/managing-research/
+
+**Takeaways from today**:
+
+- Share *something* (data, code, results)
+- But not *everything* (for ethical or practical reasons)
+
+<p class="fragment fade">
+**Assignment**: Overleaf + [`git`](https://git-scm.com/)
+</p>
+</script></section>
+
+
+
+<section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left;" -->
+
+<div class="container">
+  <div class="col">
+    <p>*A little bit about the speaker*</p>
+    <p>**Alexander L. Hayes** (https://hayesall.com)</p>
+  </div>
+  <div class="col">
+    <img style="max-height: 300px;" class="plain" src="images/health_signal_patterns.png" />
+  </div>
+</div>
+
+<br />
+
+- Probabilistic/relational machine learning
+- Clinical decision making applications
+- Free and Open source / research software
+</script></section>
+
+
+
+<section  data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left;"> -->
+## **Foundation**
+
+<br />
 
 - **Internal Review Board** (IRB): ethical and practical considerations of doing research
 - **Broader Impacts**: blogging, publishing, improving scientific understanding
-</script></section><section  data-markdown><script type="text/template">
-<!-- .slide: style="text-align: left;"> -->  
-### Putting these ideas into practice is guides our discussion today
 
-- Managing Data
-- Sharing Knowledge
-</script></section><section  data-markdown><script type="text/template">
+<br />
+<br />
+
+<p class="fragment fade">**Managing Research**: *How do we put these into practice?*</p>
+</script></section>
+
+
+
+<section  data-markdown><script type="text/template">
 <!-- .slide: data-background="#42aaf4" -->
 # Part 1: Managing Data
-</script></section><section  data-markdown><script type="text/template">
+</script></section>
+
+
+
+<section data-markdown><script type="text/template">
 Whether your work is *qualitative* or *quantitative*, at some point you
 will need to **manage data**
 
 <section>
 <ul>
-  <li class="fragment fade">research diary</li>
-  <li class="fragment fade">sensor readings</li>
+  <li class="fragment fade">observation diary</li>
   <li class="fragment fade">interview transcripts</li>
   <li class="fragment fade">ethnographic field notes</li>
-  <li class="fragment fade">blog posts</li>
-  <li class="fragment fade">LaTeX documents</li>
-  <li class="fragment fade">scripts and source code</li>
+  <li class="fragment fade">sensor readings</li>
+  <li class="fragment fade">patient records</li>
+  <li class="fragment fade">average F1 scores</li>
+  <li class="fragment fade">algorithm sensitivity to hyperparameters</li>
 </ul>
 </section>
-</script></section><section  data-markdown><script type="text/template">
+</script></section>
+
+
+
+<section data-markdown><script type="text/template">
 <section>
-<h2>Categories of Data\*</h2>
+<h2 style="text-decoration: underline;">[Categories of Data](https://datamanagement.iu.edu/types-of-data/classifications.php)\*</h2>
 
 <div class="container">
 <div class="col">
@@ -78,38 +135,52 @@ will need to **manage data**
 <div class="col">
 <section>
 <ul>
-  <li class="fragment fade">Critical</li>
-  <li class="fragment fade">Restricted</li>
+  <li class="fragment fade">**Critical**</li>
+  <li class="fragment fade">**Restricted**</li>
   <li class="fragment fade">University-Internal</li>
-  <li class="fragment fade">Public</li>
+  <li class="fragment fade">**Public**</li>
 </ul>
 </section>
 </div>
 </div>
-<p class="fragment fade">\* At IU (check your local policies otherwise)</p>
 </section>
-</script></section><section  data-markdown><script type="text/template">
-<!-- .slide: style="text-align: left;"> -->  
+</script></section>
+
+
+
+<section data-background-image="images/public_data.png" data-background-size="contain">
+<!-- .slide: style="text-align: left;"> -->
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<a href="https://github.com/hayesall/srlearn" style="text-decoration: underline; font-style: italic;">Everything is online!</a>
+</section>
+
+
+
+<section data-background-image="images/restricted_data.png" data-background-size="contain"></section>
+
+
+
+<section data-background-image="images/critical_data.png" data-background-size="contain"></section>
+
+
+
+<section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left;"> -->
 ## Public
+
+<br />
 
 Data that *anyone* can access with *few restrictions*
 
 <br />
 
-Often includes:
-- **Index Information**: user names, faculty email addresses, anything you can learn with a search engine
-- **Public data**: https://healthdata.gov/, you might be able to publish your own data
-</script></section><section  data-markdown><script type="text/template">
-<!-- .slide: style="text-align: left;"> -->  
-## University-Internal
+e.g. **Index Information**: user names, anything you can learn with a search engine
+</script></section>
 
-Data that *university employees* can access *for university business*
 
-<br />
 
-**May include**: Student ID numbers, phone numbers
-</script></section><section  data-markdown><script type="text/template">
-<!-- .slide: style="text-align: left;"> -->  
+<section  data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left;"> -->
 ## Restricted
 
 <br />
@@ -117,79 +188,140 @@ Data that *university employees* can access *for university business*
 Data that *specific individuals* can access, but should be carefully managed
 for *legal or ethical* reasons
 
-**May include**: Grades, personal addresses
-</script></section><section  data-markdown><script type="text/template">
-<!-- .slide: style="text-align: left;"> -->  
+<br />
+e.g. Grades, personal addresses
+</script></section>
+
+
+
+<section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left;"> -->
 ## Critical
+
+<br />
 
 Data that *may cause people harm* if not handled properly
 
+<br />
+
 **May include**: Social security numbers, copies of a passport, patient records 😬
-</script></section><section  data-markdown><script type="text/template">
-## <img style="max-height: 200px;" class="plain" src="https://www.revasolutions.com/wp-content/uploads/box-logo.png"/>
+</script></section>
 
-**Box @ IU** (https://box.iu.edu) is approved for storing some of these data
-</script></section><section  data-markdown><script type="text/template">
-## Personal Account
 
-Available to *everyone with a University email address*
-</script></section><section  data-markdown><script type="text/template">
-## Group / Organizational Account
 
-**Group Accounts** are shared folders for non-sensitive data
+<section  data-markdown><script type="text/template">
+<section class="fig-container" data-file="https://kb.iu.edu/d/ajay#kms-document-div"</section>
+</script></section>
 
-**Organizational Accounts** are similar, but are owned by an *organization rather than a user*
 
-For research labs with non-sensitive data, either may be appropriate
-</script></section><section  data-markdown><script type="text/template">
-## Box Entrusted Data Account
 
-These can be marked using `[Box Entrusted]` as the first part of a folder name
-
-<img class="plain" src="https://rest.kb.iu.edu/image/a105s.png">
-</script></section><section  data-markdown><script type="text/template">
-## Box Health Data Account
-
-These are a special class noted by `[Box Health]` which can include *critical health data*
-</script></section><section  data-markdown><script type="text/template">
-Each of these have specific levels of security and access control,
-but we must always remember that **security is a team effort**
-
-<img class="plain" src="https://imgs.xkcd.com/comics/security.png"/>
-</script></section><section  data-markdown><script type="text/template">
-<section class="fig-container" data-file="https://kb.iu.edu/d/bdhb#where"</section>
-</script></section><section  data-markdown><script type="text/template">
+<section  data-markdown><script type="text/template">
 ### Further Reading on Data Management
 
 <br />
 
 - [Types of Data](https://datamgmt.iu.edu/types-of-data/classifications.php)
-- [Types of Box accounts at IU](https://kb.iu.edu/d/bdhb)
-- [Types of data appropriate for IU Box Accounts](https://kb.iu.edu/d/bbvn)
-- [Protect sensitive data in Box](https://kb.iu.edu/d/bfpj)
-</script></section><section  data-markdown><script type="text/template">
+- [Data Sharing and Handling Tool](https://datamanagement.iu.edu/tools/data-storage-and-handling.php)
+- [Protect sensitive data in OneDrive](https://kb.iu.edu/d/bgfb)
+- [Protect sensitive data in Google Drive](https://kb.iu.edu/d/bgfa)
+</script></section>
+
+
+
+<section  data-markdown><script type="text/template">
 <!-- .slide: data-background="#42aaf4" -->
-# Part 2: Sharing Knowledge
-</script></section><section  data-markdown><script type="text/template">
+# Part 2: Managing Code
+</script></section>
+
+
+
+<section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left;" -->
+### *__Code__*: Whatever you're using to turn data into insights
+
+<br />
+
+<div class="container">
+<div class="col fragment fade">
+<p>*Before Publication*</p>
+<ul>
+  <li>Excel workbooks</li>
+  <li>Visualization scripts</li>
+  <li>Qualitative code book</li>
+  <li>Stata Files</li>
+</ul>
+</div>
+
+<div class="col fragment fade">
+<p>*After Publication*</p>
+<ul>
+  <li>LaTeX documents</li>
+  <li>Web pages</li>
+  <li>Web apps</li>
+  <li>Software</li>
+</ul>
+</div>
+</div>
+</script></section>
+
+
+<section data-markdown><script type="text/template">
 **What is Version Control?** A *Version Control System* tracks how something has *changed over time*.
 
 <img class="plain" src="https://wac-cdn.atlassian.com/dam/jcr:b5259cce-6245-49f2-b89b-9871f9ee3fa4/03%20(2).svg?cdnVersion=348">
 
 <aside class="notes"><p>Image from the Atlassian git tutorial</p>
-</aside></script></section><section  data-markdown><script type="text/template">
-## **Why Version Control?**
+</aside></script></section>
 
-- store your work online
-- track changes over time
+
+
+<section  data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left;" -->
+## **Why Version Control?** <img style="max-height: 100px;" class="plain" src="https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png"/>
+
+### Consistent method to:
+
+- share results
 - develop with others
-- sharing results
-</script></section><section  data-markdown><script type="text/template">
+- store your work
+- track changes over time
+</script></section>
+
+
+
+<section data-background-image="images/consistent_place_for_x.png" data-background-size="contain"></section>
+
+
+
+<section data-background-image="images/talk_git_repo.png" data-background-size="contain"></section>
+
+
+
+<section data-markdown><script type="text/template">
+### Sharing Results
+
+<section class="fig-container" data-file="visualizations/vis1.html"</section>
+</script></section>
+
+
+
+
+<section data-background-image="images/collaborative_development.png" data-background-opacity="0.4" data-background-size="contain" data-markdown><script type="text/template">
+<h2 style="background-color: white;">Develop with Others</h2>
+<p style="background-color: white;">Research builds on other research</p>
+</script></section>
+
+
+
+<section data-markdown><script type="text/template">
 ### Store your work online
 
 <img style="max-height: 300px;" class="plain" src="images/broken_laptop.jpg"/>
+</script></section>
 
-Replacing a laptop is bad, replacing a *year of code* is worse
-</script></section><section  data-markdown><script type="text/template">
+
+
+<section  data-markdown><script type="text/template">
 ### Track changes over time
 
 <br />
@@ -197,32 +329,11 @@ Replacing a laptop is bad, replacing a *year of code* is worse
 Where did I leave off on this project two months ago?
 
 How did we alter this 80,000 line codebase over time?
+</script></section>
 
-<br />
 
-Version control *lets you time travel*
-</script></section><section  data-markdown><script type="text/template">
-### Develop with others
 
-Computer science and informatics continuously builds on the work of others
-in our fields
-</script></section><section  data-markdown><script type="text/template">
-### Sharing Results
-
-| Time  | Temperature °F |
-| :---: | :---: |
-| 0 | 73.06 |
-| 2 | 73.08 |
-| 4 | 73.04 |
-| 6 | 73.06 |
-| 8 | 73.07 |
-| 10 | 73.09 |
-| ... | ... |
-</script></section><section  data-markdown><script type="text/template">
-### Sharing Results
-
-<section class="fig-container" data-file="visualizations/vis1.html"</section>
-</script></section><section  data-markdown><script type="text/template">
+<section data-markdown><script type="text/template">
 ### *Reproducibility*
 
 Same assumptions + same observations = same results
@@ -230,37 +341,124 @@ Same assumptions + same observations = same results
 ### *Replicability*
 
 Same results + new environment = same results
-</script></section><section  data-markdown><script type="text/template">
+</script></section>
+
+
+
+<section data-markdown><script type="text/template">
 ## <img style="max-height: 150px;" class="plain" src="https://images.ctfassets.net/nrgyaltdicpt/6gsvc5Ogjmu04I4Miu0uGg/cb1d4391717d2ab8d5e42ede6fb0eef1/overleaf_wide_colour_light_bg.png"/>
 
 +
 
 ## <img style="max-height: 150px;" class="plain" src="https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png"/>
-</script></section><section  data-markdown><script type="text/template">
-## Demo portion
+</script></section>
 
-```bash
-$ git clone https://git.overleaf.com/5ce467415a59f113f358ebbf
-```
+
+
+<section data-markdown><script type="text/template">
+## Demo: Overleaf Git Backend
+
+<img class="plain" src="images/overleaf_git_backend.png">
+
+- Install `git` - [Getting Started / Installation](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+</script></section>
+
+
+
+<section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left;" -->
+### **Assignment**:
 
 <br />
 
-We'll see the git overleaf backend: these same skills transfer to GitHub and a few other places
-</script></section><section  data-markdown><script type="text/template">
-### Further Reading on Version Control
+1. Create an account on [IU's GitHub Enterprise](https://github.iu.edu/)
+2. Create a new repository
+3. Push the history from Overleaf to IU GitHub
+4. Add a link/images in today's blog post
+</script></section>
+
+
+
+<section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left;" -->
+### **Git Cheatsheet**:
+
+First-time setup:
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "youremail@example.com"
+```
+
+Commands:
+
+```bash
+git clone [url]   # clone a repository from a remote destination
+git add [file]    # add a file
+git status        # what has changed?
+git commit        # tell (local) git about your changes
+git push          # send your changes upstream
+git remote -v     # what remote repository does git know about?
+```
+
+Modify remote and push to a different upstream:
+
+```bash
+git remote remove origin
+git remote add origin https://github.iu.edu/user/repo.git
+git push -u origin master
+```
+</script></section>
+
+
+<section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left;" -->
+### **Bash/Terminal Cheatsheet**:
+
+Moving around:
+
+```bash
+cd [directory]    # Change Directory: ``cd ~/Downloads/``
+cd ..             # go "down" one directory
+```
+
+Listing files:
+
+```bash
+ls                # List files in current directory
+ls [directory]    # List files in another directory
+```
+
+Other commands which may be helpful:
+
+```bash
+pwd               # Present Working Directory: where am I?
+exit              # Exit
+```
+
+</script></section>
+
+
+
+<section data-markdown><script type="text/template">
+### Further Reading
 
 <br />
 
 - [Pro Git Book (free online)](https://git-scm.com/book/en/v2)
 - [How to Teach Git (Rachel M. Carmena)](https://rachelcarmena.github.io/2018/12/12/how-to-teach-git.html)
-- [Writing commit messages](https://github.com/joelparkerhenderson/git_commit_message)
-- [Gitmoji (emoji for your commit messages)](https://gitmoji.carloscuesta.me/)
-</script></section><section  data-markdown><script type="text/template">
-Slides/links available online:
+- ["Learn Git Branching" - Interactive Tutorial](https://learngitbranching.js.org/)
 
-https://hayesall.com/talks/managing-research/
-</script></section></div>
-    </div>
+**Fun Stuff** 😊
+
+- [Writing commit messages](https://github.com/joelparkerhenderson/git_commit_message)
+- [Gitmoji (emoji for your commit messages)](https://gitmoji.dev/)
+</script></section>
+
+
+
+</div>
+</div>
 
     <script src="./lib/js/head.min.js"></script>
     <script src="./js/reveal.js"></script>
