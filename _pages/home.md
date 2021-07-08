@@ -93,6 +93,7 @@ excerpt: "Alexander L. Hayes is a Ph.D. Student at Indiana University (IU) Bloom
 <h2>Updates</h2>
 
 <ul>
+<li>"A Probabilistic Approach to Extract Qualitative Knowledge for Early Prediction of Gestational Diabetes" was accepted at AIME 2021</li>
 <li><a href="https://github.com/hayesall/srlearn/">srlearn: A Python Library for Gradient-Boosted Statistical Relational Models</a> was accepted at the Ninth International Workshop on Statistical Relational AI</li>
 <li>2019-06-14: I am attending International Conference of Machine Learning (ICML) in Long Beach, California.</li>
 <li>Spring 2019: I am transferring to work as a Research Assistant with the Proactive Health Informatics (ProHealth) Department within the School of Informatics, Computing, and Engineering (SICE) at Indiana University, Bloomington.</li>
