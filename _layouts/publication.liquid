@@ -8,8 +8,10 @@ layout: default_latex
       <h1>
         <span itemprop="name">{{ page.title }}</span>
       </h1>
+      <h3>
+        {{ page.authors | join: ", " }}
+      </h3>
     </div>
-    {% include breadcrumbs.html %}
     {% if page.image.feature %}
     <div class="page-feature">
       <div class="page-image">

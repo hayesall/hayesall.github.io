@@ -1,3 +1,11 @@
+- authors: Athresh Karanam, Alexander L. Hayes, Harsha Kokel, David M. Haas, Predrag Radivojac, and Sriraam Natarajan
+  year: 2021
+  title: A Probabilistic Approach to Extract Qualitative Knowledge for Early Prediction of Gestational Diabetes
+  date: June 15-18, 2021
+  venue: Nineteenth International Conference on Artificial Intelligence in Medicine
+  location: Online (Hosted in Porto, Portugal)
+  doi: https://doi.org/10.1007/978-3-030-77211-6_59
+  pdf: https://hayesall.com/publications/quake-gdm.pdf
 - authors: Alexander L. Hayes
   year: 2020
   title: "srlearn: A Python Library for Gradient-Boosted Statistical Relational Models"

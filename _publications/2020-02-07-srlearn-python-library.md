@@ -17,6 +17,8 @@ image:
   teaser: publications/starai2020_hayes-srlearn-python-library.png
 ---
 
+[![](https://img.shields.io/badge/arXiv-1912.08198-red)](https://arxiv.org/abs/1912.08198)
+
 **Accepted** at the [Ninth International Workshop on Statistical Relational AI - StarAI 2020](http://www.starai.org/2020/).
 
 ## Paper
@@ -72,6 +74,21 @@ appreciated.
 
 Scripts for reproducing *Table 1* are contained in the
 [`experiments/` directory on GitHub](https://github.com/hayesall/srlearn-StarAI-2020-workshop/tree/master/experiments/).
+
+## Citation
+
+Please use the following citation when building on ideas of this work:
+
+```bibtex
+@misc{hayes2019srlearn,
+  title={srlearn: A Python Library for Gradient-Boosted Statistical Relational Models},
+  author={Alexander L. Hayes},
+  year={2019},
+  eprint={1912.08198},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG}
+}
+```
 
 ## Acknowledgments
 
