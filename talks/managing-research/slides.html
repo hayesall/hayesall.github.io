@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <title>Managing Research: Data and Code</title>
-    <link rel="stylesheet" href="./css/reveal.css" />
-    <link rel="stylesheet" href="./css/theme/simple.css" id="theme" />
-    <link rel="stylesheet" href="./css/highlight/github.css" />
-    <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="../template/css/reveal.css" />
+    <link rel="stylesheet" href="../template/css/theme/simple.css" id="theme" />
+    <link rel="stylesheet" href="../template/css/highlight/github.css" />
+    <link rel="stylesheet" href="../template/css/print/paper.css" type="text/css" media="print" />
 
   </head>
   <body>
@@ -460,8 +460,8 @@ exit              # Exit
 </div>
 </div>
 
-    <script src="./lib/js/head.min.js"></script>
-    <script src="./js/reveal.js"></script>
+    <script src="../template/lib/js/head.min.js"></script>
+    <script src="../template/js/reveal.js"></script>
 
     <script>
       function extend() {
@@ -479,13 +479,13 @@ exit              # Exit
 
       // Optional libraries used to extend on reveal.js
       var deps = [
-        { src: './lib/js/classList.js', condition: function() { return !document.body.classList; } },
-        { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
-        { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
-        { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-        { src: './plugin/zoom-js/zoom.js', async: true },
-        { src: './plugin/notes/notes.js', async: true },
-        { src: './plugin/math/math.js', async: true }
+        { src: '../template/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '../template/plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: '../template/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: '../template/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: '../template/plugin/zoom-js/zoom.js', async: true },
+        { src: '../template/plugin/notes/notes.js', async: true },
+        { src: '../template/plugin/math/math.js', async: true }
       ];
 
       // default options to init reveal.js
@@ -504,8 +504,8 @@ exit              # Exit
       var options = extend(defaultOptions, {"transition":"fade","controls":true,"progress":true}, queryOptions);
     </script>
 
-    <script src="./assets/customjs/reveald3.js"></script>
-    <script src="./assets/customjs/custom.js"></script>
+    <script src="../template/assets/customjs/reveald3.js"></script>
+    <script src="../template/assets/customjs/custom.js"></script>
 
     <script>
       Reveal.initialize(options);

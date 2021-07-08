@@ -96,7 +96,7 @@ from ER Diagrams. In Proceedings of the Knowledge Capture Conference
 (K-CAP 2017). ACM, New York, NY, USA, Article 30, 8 pages.
 DOI: https://doi.org/10.1145/3148011.3148027
 
-```latex
+```bibtex
 @inproceedings{hayes2017userfriendly,
    author = {Hayes, Alexander L. and Das, Mayukh and Odom, Phillip and Natarajan, Sriraam},
    title = {User Friendly Automatic Construction of Background Knowledge: Mode Construction from ER Diagrams},
