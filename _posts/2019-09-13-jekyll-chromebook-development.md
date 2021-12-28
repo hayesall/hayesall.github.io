@@ -3,6 +3,7 @@ layout: article
 title: "Jekyll Blogging on Chromebooks"
 description: "Fix 'This site can't be reached, 127.0.0.1 refused to connect' error when Jekyll blogging on Chromebooks."
 date: 2019-09-13
+modified: 2021-12-28
 excerpt: >-
   This site can't be reached? 127.0.0.1 refused to connect?
   How does Jekyll development on Chromebook differ from
@@ -14,6 +15,18 @@ image:
   teaser: teaser/teaser_jekyll_chromebook.png
   feature: feature/refused_to_connect.jpg
 ---
+
+## Update: 2021-12-28
+
+This fix no longer
+seems to be required in build 96.0.4664.111. The
+standard way to start the server should be possible
+now:
+
+```bash
+$ bundle exec jekyll serve
+# Navigate browser to localhost:4000
+```
 
 ## The simple solution:
 
