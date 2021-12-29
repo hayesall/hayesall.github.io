@@ -1,0 +1,3 @@
+digraph simple_model {
+  X -> T
+}
