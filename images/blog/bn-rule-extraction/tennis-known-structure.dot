@@ -1,0 +1,4 @@
+digraph tennis_known_structure {
+    Outlook, Wind -> PlayTennis
+    Temperature -> Humidity
+}

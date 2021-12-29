@@ -1,0 +1,6 @@
+digraph tennis_naive_bayes {
+    PlayTennis -> Outlook
+    PlayTennis -> Temperature
+    PlayTennis -> Humidity
+    PlayTennis -> Wind
+}
