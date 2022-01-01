@@ -1,0 +1,7 @@
+digraph G {
+    X1 [shape=circle, fixedsize=true];
+    X2 [shape=circle, fixedsize=true];
+    T [shape=circle, fixedsize=true];
+
+    X1, X2 -> T;
+}
