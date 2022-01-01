@@ -26,59 +26,82 @@ modified version of the K2 structure
 learning algorithm. With ten years of
 hindsight available to me, it
 
-$$ \tag{1} P(D \mid M) = \prod_{i=1}^{n} \prod_{j=1}^{q_{i}} \frac{(r_{i} - 1)!}{(N_{ij} + r_{i} - 1)!} \prod_{k=1}^{r_{i}} N_{ijk}! $$
+<div style="overflow: auto">
+$$
+\begin{split}
+P(D \mid M) &= \prod_{i=1}^{n} \prod_{j=1}^{q_{i}} \frac{(r_{i} - 1)!}{(N_{ij} + r_{i} - 1)!} \prod_{k=1}^{r_{i}} N_{ijk}! \cr
+            &= \prod_{j=1}^{q} \frac{(r - 1)!}{(N_{j} + r - 1)!} \prod_{k=1}^{r} N_{jk}!
+\end{split}
+$$
+</div>
 
 Given that you know a little about Bayesian networks, you're surely
 aware that the inference schemes on top of them can get quite
 complicated.[^3]
 
-[^3]: How complicated? The last author on this paper, Gregory F. Cooper, proved that exact inference is NP-hard for general Bayesian networks. See: "*The computational complexity of probabilistic inference using bayesian belief networks*," [https://doi.org/10.1016/0004-3702(90)90060-D](https://doi.org/10.1016/0004-3702(90)90060-D)
+[^3]: How complicated? The last author on this paper&mdash;Gregory F. Cooper&mdash;proved that exact inference is NP-hard for general Bayesian networks. See: "*The computational complexity of probabilistic inference using bayesian belief networks*," [https://doi.org/10.1016/0004-3702(90)90060-D](https://doi.org/10.1016/0004-3702(90)90060-D)
 
-## Interpreting the algorithm in the paper
+## Interpreting the BRL pseudocode
 
-Gopalakrishnan et al. developed the "Bayesian Rule Learning" (BRL)
-algorithm in two parts.
+Gopalakrishnan et al. developed their "Bayesian Rule Learning" (BRL)
+algorithm in two parts, starting on page three.
 
-Page 3 had the first part, which handled searching for a Bayesian network
-structure (lines 1-9 in the BRL listing). This removes some of the
-details, but the main idea is that it does a local beam search over the
-user-provided variable order and continues making local changes to the
-network structure so long as the likelihood score keeps improving and the
-"max number of parents" constraint is not violated.
+<div class="row">
+  <div class="column">
+    <p>Lines 1-9 use beam search to find a Bayesian network structure using the modified K2 criteria for scroing, with the "for-each" (line 8) suggesting the users have some control over structures through variable ordering. But otherwise this makes local changes to the structures so long as the "maximum number of parents" constraint is not violated, places in-progress structures back on the beam, and records structures that cannot be improved by adding another variable onto a final priority queue. Line 10 converts the best structure into rules.</p>
+  </div>
+  <div class="column">
+    <img src="/images/blog/bn-rule-extraction/brl_algorithm.png" alt="" style="display: block; margin-left: auto; margin-right: auto; max-height: 400px">
+  </div>
+</div>
 
 Here is a rough transcription I made of the algorithm into a Julia-esque
 syntax:
 
-```julia
+{% highlight julia linenos %}
+B = Beam(1000)([BayesNet(T)])       # Initialize width-1000 Beam with a BayesNet containing T
+A = Set()                           # 𝐴 is a subset of variables 𝑉 containing Xᵢ in final structures
+F = PriorityQueue()                 # 𝐹 contains final structures that cannot be improved further
+
 while (!isempty(B) && A ⊂ V)
-  M = max(B.score)                # Highest scoring model removed from B
-  X = V - {parents(M) ∪ A}        # Xᵢ not in 𝑀 or 𝐴
+  M = maximum(B)                    # Highest scoring model removed from 𝐵
+  X = setdiff(V, A ∪ parents(M))    # Xᵢ not in 𝑀 or 𝐴
 
   score_improves = false
 
   if (!isempty(X) && size(parents(M) < MAX_CONJS))
     for Xᵢ in X
-      Mₙ = add_parent(M, Xᵢ, T)    # Add Xᵢ as a parent of T in M
+      Mₙ = add_parent(M, Xᵢ, T)     # Add Xᵢ as a parent of T in M
 
       if score(Mₙ, D) > score(M, D)
-        add(M, B)
+        push!(B, Mₙ)                # Place the new model Mₙ on the Beam
         score_improves = true
       end
     end
   end
 
   if !score_improves
-    add(M, F)                       # Place 𝑀 on 𝐹
-    A = A ∪ {Xᵢ for Xᵢ in M}
+    push!(M, F)                       # Place 𝑀 on 𝐹
+    A = A ∪ M.variables
   end
 end
-```
+{% endhighlight %}
 
-Line 10 appears to occur independently of the rest of the listing.
-It removes a model from the priority queue $$\mathit{F}$$ and uses the
+I did not implement this, but based on line 13 exclusively adding variables as parents of the target
+$$\mathit{T}$$, it should only be possible to produce structures like the following:
+
+<figure class="third">
+  <img src="/images/blog/bn-rule-extraction/sample-networks/s0.svg" style="display: block; margin-left: auto; margin-right: auto; max-height: 200px;">
+  <img src="/images/blog/bn-rule-extraction/sample-networks/s1.svg" style="display: block; margin-left: auto; margin-right: auto; max-height: 200px;">
+  <img src="/images/blog/bn-rule-extraction/sample-networks/s2.svg" style="display: block; margin-left: auto; margin-right: auto; max-height: 200px;">
+  <figcaption>Three Bayesian Networks where the target is influenced by a small number of parents. "Figure 1" in the paper shows an example similar to the two-parent network here. Rules extracted from such a network could be interpreted as "the conjunction of two variables influence the target."</figcaption>
+</figure>
+
+Line 10 occurs independently from the rest of the listing.
+It removes the best model from the priority queue $$\mathit{F}$$ and uses the
 joint distribution over the variables to create IF/THEN rules.
 
-```julia
+{% highlight julia linenos %}
 model = first(F)                    # First model removed from priority queue 𝐹
 for Xᵢ ∈ model
   for j ∈ Xᵢ                        # Each joint state of values
@@ -89,12 +112,94 @@ for Xᵢ ∈ model
     @show "IF ($Xᵢ = $j) THEN ($T = $s); $(CF(R[j][s]))"
   end
 end
+{% endhighlight %}
+
+But as suggested in Figure 3 of the paper, it's fairly easy to see
+how this works using an example. Consider the following two-variable model
+with binary variables and these conditional probability tables:
+
+<div class="row">
+  <div class="column">
+    <img alt="Two variable Bayesian network where " src="/images/blog/bn-rule-extraction/simple-model.svg" style="display: block; margin-left: auto; margin-right: auto;">
+  </div>
+  <div class="column">
+    <p>
+      $$
+      \begin{split}
+      P(X = 0) = 0.7 \cr
+      P(X = 1) = 0.3 \cr\cr
+      P(T = 0 \mid X = 0) = 0.2 \cr
+      P(T = 1 \mid X = 0) = 0.8 \cr
+      P(T = 0 \mid X = 1) = 0.6 \cr
+      P(T = 1 \mid X = 1) = 0.4
+      \end{split}
+      $$
+    </p>
+  </div>
+</div>
+
+Then the "rule extraction" portion of the algorithm could produce four rules
+where the confidence factor (CF) is the likelihood ratio
+for and against an outcome $$T$$ when presented with evidence $$X = x$$:
+
+```python
+  IF (X = 0) THEN T = 0
+    CF = 0.25                     # 0.25 = 0.2 / 0.8
+  IF (X = 0) THEN T = 1
+    CF = 4.0                      # 4.00 = 0.8 / 0.2
+  IF (X = 1) THEN T = 0
+    CF = 1.5                      # 1.50 = 0.6 / 0.4
+  IF (X = 1) THEN T = 1
+    CF = 0.67                     # 0.67 ≈ 0.4 / 0.6
 ```
 
-The sum of these two parts is the "Bayesian Rule Learning" algorithm.
-But thinking a bit more generally, this consists of one part for
-"structure learning" and another part for "rule extraction." I have
-ten years of hindsight available to me, so this immediately reminded
+Another suggestion in figure 3 is to prune the cases with lowest confidence
+given the same evidence:[^a-note-on-pruning]
+
+[^a-note-on-pruning]: The algorithm listing introduces a variable `s` representing `argmax(max(CF(R)))`: the index of the rule with maximum confidence. Therefore if you're following the "letter of the algorithm" then pruning should not be necessary since you'll always print the one with maximum confidence, but recasting this step as "show everything and prune" has some potential benefits I'll describe later. Briefly: the authors suggest that multiple pruning methods are valid depending on what metrics you're interested in, such as pruning rules with low likelihood ratios, or those with low support.
+
+```diff
+- IF (X = 0) THEN T = 0
+-   CF = 0.25
+  IF (X = 0) THEN T = 1
+    CF = 4.0
+  IF (X = 1) THEN T = 0
+    CF = 1.5
+- IF (X = 1) THEN T = 1
+-   CF = 0.67
+```
+
+Which says that the most likely situation is for the values of $$X$$ and $$T$$ to
+be opposites of one another:
+
+```python
+  IF (X = 0) THEN T = 1
+    CF = 4.0
+  IF (X = 1) THEN T = 0
+    CF = 1.5
+```
+
+Or:
+
+```julia
+T ⟺ ¬X
+```
+
+It's a *lossy* way to describe the Bayesian network, but we
+learned something about what happens *in general* without having
+to invoke variable elimination, message passing, or
+any other inference method.
+
+The sum of these two parts forms the
+"Bayesian Rule Learning" algorithm. But thinking a bit more generally,
+*structure learning* and *rule extraction* are independent, and a host of different *knobs* are available in each
+now that we've seen the basic layout. We could replace
+the structure learning portion of the network with any off-the-shelf
+method&mdash;then if we extract rules from arbitrary structures, we
+might learn something about how certain variables are related, resulting
+in an association rule mining technique.
+
+I also have ten years of hindsight available to me, so this immediately reminded
 me of a now-familiar pattern from the *machine learning explainability*
 literature: where someone applies post-processing to a blackbox
 classifier/regressor and uses the resulting rules to explain what is
@@ -102,44 +207,10 @@ happening in the complicated model.[^5]
 
 [^5]: Christoph Molnar's "[Interpretable Machine Learning](https://christophm.github.io/interpretable-ml-book/)" book (and others) tend to distinguish between inherently interpretable models and post-processing to explain an uninterpretable model. The chapter on "Decision Rules" and "Bayesian Rule Lists" have some overlap with what I'm discussing here.
 
-An alternative interpretation for this part shows up in figure 3,
-where the `CF` is the likelihood ratio for one outcome versus another.
+The next few sections present an implementation
+and how it might be applied to sample datasets.
 
-For example, if you have the following two-variable model with CPTs:
-
-<div class="row">
-  <div class="column">
-    <p>
-      $$
-      \begin{split}
-      P(X = x_1) = 0.7 \cr
-      P(X = x_2) = 0.3 \cr\cr
-
-      P(T = t \mid X = x_1) = 0.8 \cr
-      P(T = f \mid X = x_1) = 0.2 \cr
-      P(T = t \mid X = x_2) = 0.4 \cr
-      P(T = f \mid X = x_2) = 0.6
-      \end{split}
-      $$
-    </p>
-  </div>
-  <div class="column">
-    <img src="/images/blog/bn-rule-extraction/simple-model.svg">
-  </div>
-</div>
-
-Then the "rule extraction" portion of the algorithm produces
-
-```diff
-+ IF (X = x₁) THEN T = t
-+   CF = 4
-- IF (X = x₁) THEN T = f
--   CF = 0.25
-- IF (X = X₂) THEN T = t
--   CF = 0.67
-+ IF (X = x₂) THEN T = f
-+   CF = 1.5
-```
+---
 
 ## Implementing Bayesian Rule Learning as a Python package
 
@@ -151,22 +222,30 @@ and the code is on my GitHub:
 pip install git+https://github.com/hayesall/bn-rule-extraction.git
 ```
 
-### Bayesian Rules for Deciding when to Play Tennis
+Currently it's designed as an *explainability* method for the
+[`pomegranate` BayesianNetwork format](https://pomegranate.readthedocs.io/en/latest/BayesianNetwork.html).
+But it would be fairly straightforward to extend this if you wanted to use the rules directly
+for classification.
 
-- Open Notebook in Colab: <a target="_blank" rel="noopener noreferrer" href="https://colab.research.google.com/github/hayesall/bn-rule-extraction/blob/main/docs/notebooks/tennis.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"></a>
-- View Notebook on GitHub: <a target="_blank" rel="noopener noreferrer" href="https://github.com/hayesall/bn-rule-extraction/blob/main/docs/notebooks/tennis.ipynb"><code>tennis.ipynb</code></a>
+---
+
+### Bayesian Rules for Deciding when People Play Tennis
+
+| Open Notebook in Colab | View Notebook on GitHub |
+| :---: | :---: |
+| <a target="_blank" rel="noopener noreferrer" href="https://colab.research.google.com/github/hayesall/bn-rule-extraction/blob/main/docs/notebooks/tennis.ipynb"><img src="/images/colab-badge.svg" alt="Open in Colab"></a> | <a target="_blank" rel="noopener noreferrer" href="https://github.com/hayesall/bn-rule-extraction/blob/main/docs/notebooks/tennis.ipynb"><img src="/images/view-on-github.svg" alt="View on GitHub"></a> |
 
 You're walking your dog past the YMCA tennis courts, because your dog likes going on walks every day
 and thinks the tennis courts smell interesting. But you notice the courts are only occupied about half the
 time. Not having anything better to do, you start collecting some data on court occupation and weather
 each day.[^2]
 
-[^2]: See section 3.4.2 of Tom Mitchell's Machine Learning book (page 59 in Alexander's edition). Tom M. Mitchell. McGraw Hill. (1997). 3.4.2. In "*Machine Learning*." ISNB: 9781259096952
+[^2]: Tom Mitchell wasn't specific on where this data came from, but people that I've talked to *generally seem to assume* it's fictional. However, the book does say that each observation should be interpreted as being on a Saturday&mdash;perhaps to avoid the problem where weather on consecutive days would be highly correlated. See section 3.4.2 (page 59 in Alexander's edition). Tom M. Mitchell. McGraw Hill. (1997). 3.4.2. In "*Machine Learning*." ISNB: 9781259096952
 
 <div class="row">
   <div class="column">
 
-<div>
+<div style="overflow-x: auto;">
 <style scoped>
 
     .dataframe {
@@ -271,14 +350,37 @@ each day.[^2]
   </div>
 </div>
 
+---
 
 ### Naive Bayes for Tennis
 
-Naive Bayes assumes that the variables are conditionally independent given the label. We'll represent this by passing a fixed structure where all of the variables have `PlayTennis` (0) as a parent.
+We'll want to ordinal encode the data before handing it to `pomegranate`, and a human-readable
+mapping will be helpful to produce human-readable rules. `ordinal_encode` is a thin helper function around the
+scikit-learn `OrdinalEncoder` object, and since the step should be fairly similar across datasets I won't show
+this every time:
+
+```python
+encoded, mapping = ordinal_encode(data.columns, data)
+encoded
+```
+
+  ```output
+  array([[0., 2., 1., 0., 1.],
+         [0., 2., 1., 0., 0.],
+         [1., 0., 1., 0., 1.],
+         ...,
+         [1., 0., 2., 0., 0.],
+         [1., 0., 1., 1., 1.],
+         [0., 1., 2., 0., 0.]], dtype=float32)
+  ```
+
+Naive Bayes assumes that the variables are conditionally independent given the label. We'll represent this by passing a fixed structure where all of the variables have `PlayTennis` (the variable with index `0`) as a parent.[^pomegranate-tuple-structures]
+
+[^pomegranate-tuple-structures]: In the listing, this is enforced by passing "((), (0,), (0,), (0,), (0,))" as the structure parameter. The tuple-of-tuples is pomegranate's representation where there is a tuple for each node, and the integers in a particular tuple represent the parents of that node. Therefore, "((), (0,), (0,), (0,), (0,))" tells us that we have a 5-variable Bayesian Network where variable-0 has no parents, and all other nodes have variable-0 as a parent.
 
 <div class="row">
   <div class="column">
-  <img src="/images/blog/bn-rule-extraction/tennis-naive-bayes.svg" alt="Naive bayes representation of the tennis variables. PlayTennis is a parent to Outlook, Temperature, Humidity, and Wind.">
+  <img src="/images/blog/bn-rule-extraction/tennis/tennis-naive-bayes.svg" alt="Naive bayes representation of the tennis variables. PlayTennis is a parent to Outlook, Temperature, Humidity, and Wind.">
   </div>
   <div class="column">
 
@@ -292,29 +394,38 @@ Naive Bayes assumes that the variables are conditionally independent given the l
   </div>
 </div>
 
-The network seems backwards to a sensible causal story (*Not playing tennis causes high humidity*), but this looks reasonable for making some guesses like: "*On days when tennis is played, the humidity is probably normal.*"
+The network is backwards to a sensible causal story (*surely playing tennis doesn't cause rain*),
+and the influence directions are opposite to the one suggested by the BRL algorithm.
 
 ```python
 print_rules(naive_model, data.columns, mapping)
 ```
 
-```haskell
-Probabilities:
-- PlayTennis
-    P( PlayTennis = no ) = 0.36
-    P( PlayTennis = yes ) = 0.64
+  ```output
+  Probabilities:
+  - PlayTennis
+      P( PlayTennis = no ) = 0.36
+      P( PlayTennis = yes ) = 0.64
 
-IF (PlayTennis = no) THEN (Outlook = sunny)
-    CF = 1.50
-IF (PlayTennis = no) THEN (Humidity = high)
-    CF = 4.00
-IF (PlayTennis = yes) THEN (Humidity = normal)
-    CF = 2.00
-IF (PlayTennis = no) THEN (Wind = strong)
-    CF = 1.50
-IF (PlayTennis = yes) THEN (Wind = weak)
-    CF = 2.00
-```
+  IF (PlayTennis = no) THEN (Outlook = sunny)
+      CF = 1.50
+  IF (PlayTennis = no) THEN (Humidity = high)
+      CF = 4.00
+  IF (PlayTennis = yes) THEN (Humidity = normal)
+      CF = 2.00
+  IF (PlayTennis = no) THEN (Wind = strong)
+      CF = 1.50
+  IF (PlayTennis = yes) THEN (Wind = weak)
+      CF = 2.00
+  ```
+
+Nonetheless, the rules tell us something about how the each outcome is related to potential conditions:
+
+1. "*On days when tennis is played, the humidity is probably normal.*"
+2. "*On days when tennis is played, the wind is probably weak.*"
+3. "*On days when tennis is NOT played, the humidity is probably high.*"
+
+---
 
 ### Structure Learning + Rule Extraction for the Binary Classification Case
 
@@ -324,7 +435,7 @@ We can encode "PlayTennis should not be the parent of any other node" using the 
 
 <div class="row">
   <div class="column">
-  <img src="/images/blog/bn-rule-extraction/tennis-learned-structure.svg" alt="A structure found during structure learning.">
+  <img src="/images/blog/bn-rule-extraction/tennis/tennis-learned-structure.svg" alt="A structure found during structure learning.">
   </div>
   <div class="column">
 
@@ -350,6 +461,8 @@ IF (Humidity = normal) THEN (PlayTennis = yes)
     CF = 6.00
 ```
 
+---
+
 ### Using a structure based on some prior knowledge
 
 There's one structure I want to highlight. I found this one while trying
@@ -358,7 +471,7 @@ leave-one-out-cross-validation accuracy.
 
 <div class="row">
   <div class="column">
-  <img src="/images/blog/bn-rule-extraction/tennis-known-structure.svg" alt="A structure we wanted to try.">
+  <img src="/images/blog/bn-rule-extraction/tennis/tennis-known-structure.svg" alt="A structure we wanted to try.">
   </div>
   <div class="column">
 
@@ -376,10 +489,13 @@ The causal interpretation seems tenuous&mdash;it seems like a sunny or overcast 
 This structure gives us an excuse to explore *multiple conditions
 affecting an outcome.* Both `Outlook` and `Wind` influence `PlayTennis`.
 
+---
+
 ### Bayesian Rule Extraction to Explain Income from Census Data
 
-- Open Notebook in Colab: <a target="_blank" rel="noopener noreferrer" href="https://colab.research.google.com/github/hayesall/bn-rule-extraction/blob/main/docs/notebooks/adult.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"></a>
-- View Notebook on GitHub: <a target="_blank" rel="noopener noreferrer" href="https://github.com/hayesall/bn-rule-extraction/blob/main/docs/notebooks/adult.ipynb"><code>adult.ipynb</code></a>
+| Open Notebook in Colab | View Notebook on GitHub |
+| :---: | :---: |
+| <a target="_blank" rel="noopener noreferrer" href="https://colab.research.google.com/github/hayesall/bn-rule-extraction/blob/main/docs/notebooks/adult.ipynb"><img src="/images/colab-badge.svg" alt="Open in Colab"></a> | <a target="_blank" rel="noopener noreferrer" href="https://github.com/hayesall/bn-rule-extraction/blob/main/docs/notebooks/adult.ipynb"><img src="/images/view-on-github.svg" alt="View on GitHub"></a> |
 
 Now we'll turn our focus toward applying the "*Bayesian Rule Learning*" algorithm to a more-realistic
 *Adult* dataset, which is a common benchmark for *interpretable* or *fair* methods
@@ -411,9 +527,8 @@ data.dropna(inplace=True)
 data
 ```
 
-
-<div>
-<table border="1" class="dataframe">
+<div style="overflow-x: auto;">
+<table class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -565,6 +680,23 @@ data
 </table>
 </div>
 
+And we'll ordinal-encode the values:
+
+```python
+encoded, mapping = ordinal_encode(data.columns, data)
+encoded
+```
+
+  ```output
+  array([[ 5.,  9.,  4., ...,  1., 38.,  0.],
+         [ 4.,  9.,  2., ...,  1., 38.,  0.],
+         [ 2., 11.,  0., ...,  1., 38.,  0.],
+         ...,
+         [ 2., 11.,  6., ...,  0., 38.,  0.],
+         [ 2., 11.,  4., ...,  1., 38.,  0.],
+         [ 3., 11.,  2., ...,  0., 38.,  1.]], dtype=float32)
+  ```
+
 ### Unconstrained Structure Learning
 
 *Gopalakrishnan 2010* used a modified version of the K2 structure learning algorithm. This uses pomegranate's `.from_samples` method to fitting exact structures using search.
@@ -580,7 +712,7 @@ unconstrained_model = BayesianNetwork().from_samples(
 )
 ```
 
-<img src="/images/blog/bn-rule-extraction/adult-unconstrained.svg" alt="Structure learned on the adult dataset with no constraints.">
+<img src="/images/blog/bn-rule-extraction/adult/adult-unconstrained.svg" alt="Structure learned on the adult dataset with no constraints.">
 
 Similar to the Naive Bayes case from the "Tennis" example, you might be able to make guesses when knowing the prior probabilities of the outcomes and its influence on other variables. But "Income" was what we wanted to predict, and a network rooted at "Income" means that it will never occur after a `THEN`.
 
@@ -588,12 +720,13 @@ Similar to the Naive Bayes case from the "Tennis" example, you might be able to 
 print_rules(unconstrained_model, data.columns, mapping)
 ```
 
-```
-Probabilities:
-- Income
-    P( Income = <=50K ) = 0.75
-    P( Income = >50K ) = 0.25
-```
+  ```output
+  Probabilities:
+  - Income
+      P( Income = <=50K ) = 0.75
+      P( Income = >50K ) = 0.25
+  ...
+  ```
 
 Here we see a case where the confidence factor is infinite. Since the confidence factor is calculated
 by weighing the evidence for and against something, `CF = inf` means there was no contrary evidence.
@@ -606,8 +739,8 @@ IF (Relationship = Husband ^ Gender = Male) THEN (MaritalStatus = Married-civ-sp
 ```
 
 
-<div>
-<table border="1" class="dataframe">
+<div style="overflow-x: auto;">
+<table class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -670,7 +803,7 @@ model = BayesianNetwork().from_samples(
 )
 ```
 
-<img src="/images/blog/bn-rule-extraction/adult-constrained.svg" alt="Structure learned on the adult dataset with a constraint that Income cannot be the parent of any other variable.">
+<img src="/images/blog/bn-rule-extraction/adult/adult-constrained.svg" alt="Structure learned on the adult dataset with a constraint that Income cannot be the parent of any other variable.">
 
 ## Ideas and Further Thoughts
 
@@ -690,7 +823,7 @@ if (Outlook == "sunny" and Wind == "strong"):
 
 ---
 
-### (2) Being Infinitely confident
+### (2) Being Infinitely confident: limitations of likelihood ratios
 
 Now consider a case like this:
 
@@ -742,5 +875,4 @@ hindsight made this paper look more like
 a post-hoc explanations technique for
 a Bayesian network.
 
-"Bayesian rule learning for biomedical data mining"
-https://academic.oup.com/bioinformatics/article/26/5/668/212302
+["Bayesian rule learning for biomedical data mining"](https://academic.oup.com/bioinformatics/article/26/5/668/212302)
