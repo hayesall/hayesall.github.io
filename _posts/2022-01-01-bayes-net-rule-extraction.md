@@ -2,14 +2,14 @@
 layout: article
 title: "Extracting Interpretable Rules from Bayesian Networks in Python"
 description:
-date: 2021-12-28
-excerpt: WIP
+date: 2022-01-01
+excerpt: I read a bioinformatics paper on Bayesian rule learning. With ten years of hindsight, it looked a lot like an explainability technique.
 categories: blog
 tags: ["machine-learning"]
 comments: true
 image:
-  teaser: teaser/kmeans_teaser.png
-  feature: feature/kmeans_feature.png
+  teaser: teaser/bn-rule-extraction-teaser.png
+  feature: feature/bn-rule-extraction.png
 ---
 
 ## Some prerequisites
@@ -37,9 +37,9 @@ $$
 
 Given that you know a little about Bayesian networks, you're surely
 aware that the inference schemes on top of them can get quite
-complicated.[^3]
+complicated.[^inference-complexity]
 
-[^3]: How complicated? The last author on this paper&mdash;Gregory F. Cooper&mdash;proved that exact inference is NP-hard for general Bayesian networks. See: "*The computational complexity of probabilistic inference using bayesian belief networks*," [https://doi.org/10.1016/0004-3702(90)90060-D](https://doi.org/10.1016/0004-3702(90)90060-D)
+[^inference-complexity]: How complicated? The last author on this paper&mdash;Gregory F. Cooper&mdash;proved that exact inference is NP-hard for general Bayesian networks. See: "*The computational complexity of probabilistic inference using bayesian belief networks*," [https://doi.org/10.1016/0004-3702(90)90060-D](https://doi.org/10.1016/0004-3702(90)90060-D)
 
 ## Interpreting the BRL pseudocode
 
