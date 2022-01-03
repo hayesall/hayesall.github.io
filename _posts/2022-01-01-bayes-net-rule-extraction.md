@@ -16,11 +16,11 @@ image:
 
 I stumbled upon a 2010 paper by
 Vanathi Gopalakrishnan, Jonathan L. Lustgarten, Shyam Visweswaran, and Gregory F. Cooper
-called: "[*Bayesian rule learning for biomedical data mining*](https://academic.oup.com/bioinformatics/article/26/5/668/212302)."[^full-reference]
+titled: "[*Bayesian rule learning for biomedical data mining*](https://academic.oup.com/bioinformatics/article/26/5/668/212302)."[^full-reference]
 
 [^full-reference]: Vanathi Gopalakrishnan, Jonathan L. Lustgarten, Shyam Visweswaran, Gregory F. Cooper, Bayesian rule learning for biomedical data mining, Bioinformatics, Volume 26, Issue 5, 1 March 2010, Pages 668–675, [https://doi.org/10.1093/bioinformatics/btq005](https://doi.org/10.1093/bioinformatics/btq005)
 
-The idea was to develop an algorithm for learning probabilistic/logical rules, but with ten
+Their idea was to develop an algorithm for learning probabilistic/logical rules, but with ten
 years of hindsight available to me, it seemed to anticipate methods now developed in
 "*explainable or interpretable machine learning*."[^ml-interpretability] The authors describe
 (1) learning Bayesian networks using a modified K2 structure learning approach, then (2)
@@ -33,7 +33,7 @@ The pattern of "*fit a model*" and then
 My goal in this post is to interpret the paper in this slightly different context, and
 suggest some extensions.
 
-I'll assume that you know already know a little about Bayesian networks and factorized probability
+I'll assume that you already know a little about Bayesian networks and factorized probability
 distributions. Since inference is hard in the general case,[^inference-complexity]
 our goal is to learn something about our data using Bayesian networks without having to
 run inference.
@@ -361,7 +361,7 @@ each day.[^the-tennis-dataset]
 ### Naive Bayes for Tennis
 
 We'll want to ordinal encode the data before handing it to `pomegranate`, and we'll want a mapping
-between category integers back into an easy-to-read representation later.
+between category codes back into an easy-to-read representation later.
 `ordinal_encode` is a small helper function around the
 scikit-learn `OrdinalEncoder` object, which returns a float32 numpy array and a dictionary
 mapping the encoded format back to the string format.
@@ -381,7 +381,7 @@ encoded
          [0., 1., 2., 0., 0.]], dtype=float32)
   ```
 
-Naive Bayes assumes that the variables are conditionally independent given the label. We'll represent this by passing a fixed structure where all of the variables have `PlayTennis` (the variable with index `0`) as a parent.[^pomegranate-tuple-structures]
+Naive Bayes assumes that the variables are conditionally independent given the target. We'll represent this by passing a fixed structure where all of the variables have `PlayTennis` (the variable with index `0`) as a parent.[^pomegranate-tuple-structures]
 
 [^pomegranate-tuple-structures]: In the listing, this is enforced by passing "((), (0,), (0,), (0,), (0,))" as the structure parameter. The tuple-of-tuples is pomegranate's representation where there is a tuple for each node, and the integers in a particular tuple represent the parents of that node. Therefore, "((), (0,), (0,), (0,), (0,))" tells us that we have a 5-variable Bayesian Network where variable-0 has no parents, and all other nodes have variable-0 as a parent.
 
@@ -950,11 +950,11 @@ IF (Education = Bachelors ^ Relationship = Other-relative) THEN (Income <= 50,00
 
 ## Ideas and Further Thoughts
 
-I've found this approach to be pretty helpful in some of the health informatics problems I currently
+I've found this approach to be pretty helpful in some health informatics problems I
 work on, and more broadly I suspect this could help reveal deterministic paths within uncertain models,
 shed light on cases where domain expertise or more data are required, or perhaps reveal "bugs" in the
 data where a value was incorrectly recorded.
 
-Explaining Bayesian networks is an interesting paper in itself, see the paper I wrote with Athresh
-and Harsha on [extracting qualitative influence statements](/publications/quake-gdm/), and some
+Explaining Bayesian networks is an interesting topic in itself, see the paper I wrote with Athresh,
+Harsha, and others on [extracting qualitative influence statements](/publications/quake-gdm/), and some
 of the [Starling Lab projects](https://starling.utdallas.edu/projects/).
