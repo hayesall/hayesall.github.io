@@ -12,19 +12,43 @@ image:
   feature: feature/bn-rule-extraction.png
 ---
 
-## Some prerequisites
+## Quick Overview
 
-I'll assume that you know a little about
-Bayesian networks and factorized probability
-distributions.[^1]
+I stumbled upon a 2010 paper by
+Vanathi Gopalakrishnan, Jonathan L. Lustgarten, Shyam Visweswaran, and Gregory F. Cooper
+called: "[*Bayesian rule learning for biomedical data mining*](https://academic.oup.com/bioinformatics/article/26/5/668/212302)."[^full-reference]
 
-[^1]: If I do have some extra commentary to provide, I'll add them in the footnotes, like this.
+[^full-reference]: Vanathi Gopalakrishnan, Jonathan L. Lustgarten, Shyam Visweswaran, Gregory F. Cooper, Bayesian rule learning for biomedical data mining, Bioinformatics, Volume 26, Issue 5, 1 March 2010, Pages 668–675, [https://doi.org/10.1093/bioinformatics/btq005](https://doi.org/10.1093/bioinformatics/btq005)
 
-Gopalakrishnan 2010 described an algorithm
-for learning logical rules based on a
-modified version of the K2 structure
-learning algorithm. With ten years of
-hindsight available to me, it
+The idea was to develop an algorithm for learning probabilistic/logical rules, but with ten
+years of hindsight available to me, it seemed to anticipate methods now developed in
+"*explainable or interpretable machine learning*."[^ml-interpretability] The authors describe
+(1) learning Bayesian networks using a modified K2 structure learning approach, then (2)
+extracting rules from the conditional probability tables.
+
+[^ml-interpretability]: Christoph Molnar's "[Interpretable Machine Learning](https://christophm.github.io/interpretable-ml-book/)" book (and others) tend to distinguish between inherently interpretable models and post-processing to explain an uninterpretable model. The chapter on "Decision Rules" and "Bayesian Rule Lists" have some overlap with what I'm discussing here.
+
+The pattern of "*fit a model*" and then
+"*apply post-hoc analysis*" to tame complexity is now a staple of machine learning explainability.
+My goal in this post is to interpret the paper in this slightly different context, and
+suggest some extensions.
+
+I'll assume that you know already know a little about Bayesian networks and factorized probability
+distributions. Since inference is hard in the general case,[^inference-complexity]
+our goal is to learn something about our data using Bayesian networks without having to
+run inference.
+
+[^inference-complexity]: How complicated? The last author on this paper&mdash;Gregory F. Cooper&mdash;proved that exact inference is NP-hard for general Bayesian networks. See: "*The computational complexity of probabilistic inference using bayesian belief networks*," [https://doi.org/10.1016/0004-3702(90)90060-D](https://doi.org/10.1016/0004-3702(90)90060-D)
+
+## Interpreting the BRL pseudocode
+
+Gopalakrishnan et al. developed their "Bayesian Rule Learning" (BRL)
+algorithm in two parts, starting on page three. The first part is
+a structure scoring approach based on a modified version of the K2
+criteria.
+This provides an estimate of the data likelihood given a model.[^K2]
+
+[^K2]: Briefly, K2 is another "*search and score*" structure learning method where a user defines a variable ordering and the search proceeds with one step lookahead by exploring the frontier of remaining variables that have not been used yet. See: Gregory F. Cooper and Edward Herskovits, "*A Bayesian Method for the Induction of Probabilistic Networks from Data*." In *Machine Learning* 1992. [https://doi.org/10.1007/BF00994110](https://doi.org/10.1007/BF00994110)
 
 <div style="overflow: auto">
 $$
@@ -35,27 +59,16 @@ P(D \mid M) &= \prod_{i=1}^{n} \prod_{j=1}^{q_{i}} \frac{(r_{i} - 1)!}{(N_{ij} +
 $$
 </div>
 
-Given that you know a little about Bayesian networks, you're surely
-aware that the inference schemes on top of them can get quite
-complicated.[^inference-complexity]
-
-[^inference-complexity]: How complicated? The last author on this paper&mdash;Gregory F. Cooper&mdash;proved that exact inference is NP-hard for general Bayesian networks. See: "*The computational complexity of probabilistic inference using bayesian belief networks*," [https://doi.org/10.1016/0004-3702(90)90060-D](https://doi.org/10.1016/0004-3702(90)90060-D)
-
-## Interpreting the BRL pseudocode
-
-Gopalakrishnan et al. developed their "Bayesian Rule Learning" (BRL)
-algorithm in two parts, starting on page three.
-
 <div class="row">
   <div class="column">
-    <p>Lines 1-9 use beam search to find a Bayesian network structure using the modified K2 criteria for scroing, with the "for-each" (line 8) suggesting the users have some control over structures through variable ordering. But otherwise this makes local changes to the structures so long as the "maximum number of parents" constraint is not violated, places in-progress structures back on the beam, and records structures that cannot be improved by adding another variable onto a final priority queue. Line 10 converts the best structure into rules.</p>
+    <p>With a scoring method in place, lines 1-9 use beam search to find a Bayesian network structure using the modified K2 criteria for scroing, with the "for-each" (line 8) possibly providing some input via variable ordering. Otherwise this makes local changes to the structures so long as the "maximum number of parents" constraint is not violated, places in-progress structures back on the beam, and records structures that cannot be improved onto a final priority queue. Finally, line 10 converts the best structure into rules.</p>
   </div>
   <div class="column">
-    <img src="/images/blog/bn-rule-extraction/brl_algorithm.png" alt="" style="display: block; margin-left: auto; margin-right: auto; max-height: 400px">
+    <img src="/images/blog/bn-rule-extraction/brl_algorithm.png" alt="Pseudocode for the BRL algorithm copied from the paper." style="display: block; margin-left: auto; margin-right: auto; max-height: 400px">
   </div>
 </div>
 
-Here is a rough transcription I made of the algorithm into a Julia-esque
+For easier viewing, I made a rough transcription of the algorithm into a Julia-like
 syntax:
 
 {% highlight julia linenos %}
@@ -87,14 +100,14 @@ while (!isempty(B) && A ⊂ V)
 end
 {% endhighlight %}
 
-I did not implement this, but based on line 13 exclusively adding variables as parents of the target
+Since line 8 (line 13 in my transcription) exclusively adds variables as parents of the target
 $$\mathit{T}$$, it should only be possible to produce structures like the following:
 
 <figure class="third">
   <img src="/images/blog/bn-rule-extraction/sample-networks/s0.svg" style="display: block; margin-left: auto; margin-right: auto; max-height: 200px;">
   <img src="/images/blog/bn-rule-extraction/sample-networks/s1.svg" style="display: block; margin-left: auto; margin-right: auto; max-height: 200px;">
   <img src="/images/blog/bn-rule-extraction/sample-networks/s2.svg" style="display: block; margin-left: auto; margin-right: auto; max-height: 200px;">
-  <figcaption>Three Bayesian Networks where the target is influenced by a small number of parents. "Figure 1" in the paper shows an example similar to the two-parent network here. Rules extracted from such a network could be interpreted as "the conjunction of two variables influence the target."</figcaption>
+  <figcaption>Three Bayesian Networks where a small number of parent nodes influence the target. "Figure 1" in the paper shows an example similar to the two-parent network here. Rules extracted from such a network could be interpreted as "the conjunction of two variables influence the target."</figcaption>
 </figure>
 
 Line 10 occurs independently from the rest of the listing.
@@ -109,7 +122,7 @@ for Xᵢ ∈ model
       CF(R[j][k])
     end
     s = argmaxₖ(maxⱼ(CF(R[j][k])))
-    @show "IF ($Xᵢ = $j) THEN ($T = $s); $(CF(R[j][s]))"
+    println("IF ($Xᵢ = $j) THEN ($T = $s); $(CF(R[j][s]))")
   end
 end
 {% endhighlight %}
@@ -138,8 +151,8 @@ with binary variables and these conditional probability tables:
   </div>
 </div>
 
-Then the "rule extraction" portion of the algorithm could produce four rules
-where the confidence factor (CF) is the likelihood ratio
+The "rule extraction" portion of the algorithm can produce four rules.
+The confidence factor (CF) is the likelihood ratio
 for and against an outcome $$T$$ when presented with evidence $$X = x$$:
 
 ```python
@@ -187,45 +200,38 @@ T ⟺ ¬X
 
 It's a *lossy* way to describe the Bayesian network, but we
 learned something about what happens *in general* without having
-to invoke variable elimination, message passing, or
-any other inference method.
+to invoke variable elimination, factor graphs, message passing, or
+any other machinery.
 
 The sum of these two parts forms the
 "Bayesian Rule Learning" algorithm. But thinking a bit more generally,
 *structure learning* and *rule extraction* are independent, and a host of different *knobs* are available in each
-now that we've seen the basic layout. We could replace
-the structure learning portion of the network with any off-the-shelf
-method&mdash;then if we extract rules from arbitrary structures, we
-might learn something about how certain variables are related, resulting
-in an association rule mining technique.
-
-I also have ten years of hindsight available to me, so this immediately reminded
-me of a now-familiar pattern from the *machine learning explainability*
-literature: where someone applies post-processing to a blackbox
-classifier/regressor and uses the resulting rules to explain what is
-happening in the complicated model.[^5]
-
-[^5]: Christoph Molnar's "[Interpretable Machine Learning](https://christophm.github.io/interpretable-ml-book/)" book (and others) tend to distinguish between inherently interpretable models and post-processing to explain an uninterpretable model. The chapter on "Decision Rules" and "Bayesian Rule Lists" have some overlap with what I'm discussing here.
+now that we've seen the basic layout. For instance, we could replace
+the structure learning portion with any off-the-shelf method.
+Furthermore, extracting rules from arbitrary structures to learn how variables are related can give us
+a constrained association rule mining technique.
 
 The next few sections present an implementation
-and how it might be applied to sample datasets.
+and some suggestions for how to apply it.
 
 ---
 
 ## Implementing Bayesian Rule Learning as a Python package
 
-I implemented the rule extraction portion and a helper method as a Python package,
-and the code is on my GitHub:
-[https://github.com/hayesall/bn-rule-extraction/](https://github.com/hayesall/bn-rule-extraction/)
-
-```bash
-pip install git+https://github.com/hayesall/bn-rule-extraction.git
-```
+I implemented the rule extraction portion as a Python package; code is on my GitHub
+([https://github.com/hayesall/bn-rule-extraction/](https://github.com/hayesall/bn-rule-extraction/)),
 
 Currently it's designed as an *explainability* method for the
 [`pomegranate` BayesianNetwork format](https://pomegranate.readthedocs.io/en/latest/BayesianNetwork.html).
 But it would be fairly straightforward to extend this if you wanted to use the rules directly
 for classification.
+
+A copy can be installed locally with pip, or there are Google Colab links for some Jupyter notebooks
+accompanying the discussion here.
+
+```bash
+pip install git+https://github.com/hayesall/bn-rule-extraction.git
+```
 
 ---
 
@@ -238,9 +244,9 @@ for classification.
 You're walking your dog past the YMCA tennis courts, because your dog likes going on walks every day
 and thinks the tennis courts smell interesting. But you notice the courts are only occupied about half the
 time. Not having anything better to do, you start collecting some data on court occupation and weather
-each day.[^2]
+each day.[^the-tennis-dataset]
 
-[^2]: Tom Mitchell wasn't specific on where this data came from, but people that I've talked to *generally seem to assume* it's fictional. However, the book does say that each observation should be interpreted as being on a Saturday&mdash;perhaps to avoid the problem where weather on consecutive days would be highly correlated. See section 3.4.2 (page 59 in Alexander's edition). Tom M. Mitchell. McGraw Hill. (1997). 3.4.2. In "*Machine Learning*." ISNB: 9781259096952
+[^the-tennis-dataset]: Tom Mitchell wasn't specific on where this data came from, but people that I've talked to *generally seem to assume* it's fictional. However, the book does say that each observation should be interpreted as being on a Saturday&mdash;perhaps to avoid the problem where weather on consecutive days would be highly correlated. See section 3.4.2 (page 59 in Alexander's edition). Tom M. Mitchell. McGraw Hill. (1997). 3.4.2. In "*Machine Learning*." ISNB: 9781259096952
 
 <div class="row">
   <div class="column">
@@ -354,10 +360,11 @@ each day.[^2]
 
 ### Naive Bayes for Tennis
 
-We'll want to ordinal encode the data before handing it to `pomegranate`, and a human-readable
-mapping will be helpful to produce human-readable rules. `ordinal_encode` is a thin helper function around the
-scikit-learn `OrdinalEncoder` object, and since the step should be fairly similar across datasets I won't show
-this every time:
+We'll want to ordinal encode the data before handing it to `pomegranate`, and we'll want a mapping
+between category integers back into an easy-to-read representation later.
+`ordinal_encode` is a small helper function around the
+scikit-learn `OrdinalEncoder` object, which returns a float32 numpy array and a dictionary
+mapping the encoded format back to the string format.
 
 ```python
 encoded, mapping = ordinal_encode(data.columns, data)
@@ -429,13 +436,13 @@ Nonetheless, the rules tell us something about how the each outcome is related t
 
 ### Structure Learning + Rule Extraction for the Binary Classification Case
 
-
-
-We can encode "PlayTennis should not be the parent of any other node" using the `exclude_edges` parameter with a list of tuples:
+A simple constraint would be to prevent `PlayTennis` from being the parent of any other node.
+We can encode this using the `exclude_edges` parameter, and passing a list of tuples representing
+forbidden edges: `(0, 1)`, `(0, 2)`, `(0, 3)`, `(0, 4)`.
 
 <div class="row">
   <div class="column">
-  <img src="/images/blog/bn-rule-extraction/tennis/tennis-learned-structure.svg" alt="A structure found during structure learning.">
+  <img src="/images/blog/bn-rule-extraction/tennis/tennis-learned-structure.svg" alt="A structure found during structure learning." style="display: block; margin-left: auto; margin-right: auto;">
   </div>
   <div class="column">
 
@@ -452,9 +459,11 @@ We can encode "PlayTennis should not be the parent of any other node" using the 
   </div>
 </div>
 
-Extracting rules in this case suggests that humidity is the main indicator of whether this person plays tennis or not.
+The portion we're interested in: $$\text{Humidity} \rightarrow \text{PlayTennis}$$, is almost identical to our
+motivating example. Extracting rules from this network shows that high humidity and tennis playing
+tend to be opposites:
 
-```console
+```haskell
 IF (Humidity = high) THEN (PlayTennis = no)
     CF = 1.33
 IF (Humidity = normal) THEN (PlayTennis = yes)
@@ -463,15 +472,15 @@ IF (Humidity = normal) THEN (PlayTennis = yes)
 
 ---
 
-### Using a structure based on some prior knowledge
+### Using a structure that maximizes "PlayTennis" accuracy
 
-There's one structure I want to highlight. I found this one while trying
-to figure out which structure produced the best
-leave-one-out-cross-validation accuracy.
+There's one structure I want to highlight&mdash;where `Outlook` and `Wind` are parents of our target
+variable&mdash;similar to the kind of structures the authors suggested. I stumbled into this structure while searching
+for cases with maximum leave-one-out-cross-validation accuracy for predicting `PlayTennis`:
 
 <div class="row">
   <div class="column">
-  <img src="/images/blog/bn-rule-extraction/tennis/tennis-known-structure.svg" alt="A structure we wanted to try.">
+  <img src="/images/blog/bn-rule-extraction/tennis/tennis-known-structure.svg" alt="A structure we wanted to try." style="display: block; margin-left: auto; margin-right: auto;">
   </div>
   <div class="column">
 
@@ -484,10 +493,83 @@ leave-one-out-cross-validation accuracy.
   </div>
 </div>
 
-The causal interpretation seems tenuous&mdash;it seems like a sunny or overcast outlook should affect the temperature. But it also seems overly optimistic to expect causal explanations from the fictional world this data was drawn from.
+The causal interpretation still seems tenuous&mdash;it seems like a sunny or overcast outlook should
+affect the temperature. But it also seems overly optimistic to expect causal explanations from the
+fictional world this data was drawn from.
 
-This structure gives us an excuse to explore *multiple conditions
-affecting an outcome.* Both `Outlook` and `Wind` influence `PlayTennis`.
+This structure is a case where *multiple conditions
+affect an outcome* since `Outlook` and `Wind` influence `PlayTennis`. Running the rule extraction
+method produces some interesting rules:
+
+```haskell
+IF (Outlook = overcast ^ Wind = strong) THEN (PlayTennis = yes)
+	CF = inf
+IF (Outlook = overcast ^ Wind = weak) THEN (PlayTennis = yes)
+	CF = inf
+IF (Outlook = rain ^ Wind = strong) THEN (PlayTennis = no)
+	CF = inf
+IF (Outlook = rain ^ Wind = weak) THEN (PlayTennis = yes)
+	CF = inf
+IF (Outlook = sunny ^ Wind = strong) THEN (PlayTennis = no)
+	CF = 1.00
+IF (Outlook = sunny ^ Wind = strong) THEN (PlayTennis = yes)
+	CF = 1.00
+IF (Outlook = sunny ^ Wind = weak) THEN (PlayTennis = no)
+	CF = 2.00
+```
+
+Let's start with a case I'll call "indeterminate evidence." Two rules contain the same observations,
+but reach opposite conclusions with equal confidence:
+"*On sunny, windy days&mdash;playing tennis or not is equally likely.*"
+
+```haskell
+IF (Outlook = sunny ^ Wind = strong) THEN (PlayTennis = no)
+	CF = 1.00
+IF (Outlook = sunny ^ Wind = strong) THEN (PlayTennis = yes)
+	CF = 1.00
+```
+
+The conditional probability tables result from the training data, and when we revisit the data
+it's obvious why this occurs: we observed both situations.[^a-note-on-decision-trees]
+
+[^a-note-on-decision-trees]: There's an analogy we can make to decision tree induction. Usually when we learn decision trees, we greedily follow a path based on entropy or gini coefficients. We *could* observe what happens when introducing a third variable to give us a pure sample, but that can sometimes be a slippery slope into overfitting.
+
+```console
+   PlayTennis Outlook     Wind
+------------------------------
+1          no   sunny   strong
+10        yes   sunny   strong
+```
+
+The opposite problem occurs when we have infinite confidence in the outcomes:
+
+```haskell
+IF (Outlook = overcast ^ Wind = strong) THEN (PlayTennis = yes)
+	CF = inf
+```
+
+"Infinite confidence" occurs due to a divide-by-zero runtime exception when comparing the likelihood of
+events with no counterexamples. Again we can look at the training data and see this occurs
+because we have two examples where the outlook is overcast and the wind is strong; and our
+imaginary users played tennis on both days:
+
+```console
+   PlayTennis   Outlook    Wind
+-------------------------------
+6         yes  overcast  strong
+11        yes  overcast  strong
+?          no  overcast  strong    <-- never observed in the training data
+```
+
+
+Taken together, "indeterminate evidence" or "infinite confidence" could suggest places in the observation
+space where the decision is deterministic (infinite confidence in an outcome), or the decision is
+random (equal likelihood).[^yes-a-third-option-exists] This could also be a limitation with likelihood
+ratios, and the authors hinted that other metrics (e.g. support) could be more appropriate in specific settings.
+
+[^yes-a-third-option-exists]: Yes, *of course* a third option exists. This could simply be a signal that we don't have enough data for these cases, in which we should consult experts for advice, or invoke constraints to better guide the learning problem.
+
+The next section applies the method to a slightly more real-world dataset.
 
 ---
 
@@ -500,11 +582,12 @@ affecting an outcome.* Both `Outlook` and `Wind` influence `PlayTennis`.
 Now we'll turn our focus toward applying the "*Bayesian Rule Learning*" algorithm to a more-realistic
 *Adult* dataset, which is a common benchmark for *interpretable* or *fair* methods
 (I adapted some of the setup here from the
-[InterpretML documentation for the Explainable Boosting Machine](https://interpret.ml/docs/ebm.html)
-(used under terms of the *MIT License*)).
+[InterpretML documentation for the Explainable Boosting Machine](https://interpret.ml/docs/ebm.html)&mdash;used
+under the *MIT License*).
 
 This follows the standard binary classification problem. The goal is to predict whether a person made
-more/less than $50,000 using attributes like "Age," "Education," "MaritalStatus," etc.
+more/less than $50,000 using attributes like "Age," "Education," "MaritalStatus," etc. To simplify,
+I chose to exclude missing values and continuous attributes here.
 
 ```python
 from bayes_rule_extraction import ordinal_encode, print_rules
@@ -680,7 +763,7 @@ data
 </table>
 </div>
 
-And we'll ordinal-encode the values:
+Again, we'll ordinal-encode the values:
 
 ```python
 encoded, mapping = ordinal_encode(data.columns, data)
@@ -699,11 +782,9 @@ encoded
 
 ### Unconstrained Structure Learning
 
-*Gopalakrishnan 2010* used a modified version of the K2 structure learning algorithm. This uses pomegranate's `.from_samples` method to fitting exact structures using search.
-
-K2 would have provided some control over the maximum number of edges and whether one node can be the parent of another through a user's choice of variable ordering. Similar to what I showed in the "Tennis" example, some advice to constrain variable parentage is probably useful in practice.
-
-For example, leaving the model "unconstrained" may produce network structures and downstream rules that are more difficult to interpret:
+As humans, we tend to have a lot of prior knowledge about how we expect the world to work. Unfortunately, it's rarely
+obvious what knowledge needs applying until we do some basic exploration. We'll start with a *let's see what happens*
+attitude by fitting parameters and a structure without prior knowledge:
 
 ```python
 unconstrained_model = BayesianNetwork().from_samples(
@@ -712,32 +793,40 @@ unconstrained_model = BayesianNetwork().from_samples(
 )
 ```
 
-<img src="/images/blog/bn-rule-extraction/adult/adult-unconstrained.svg" alt="Structure learned on the adult dataset with no constraints.">
+<img src="/images/blog/bn-rule-extraction/adult/adult-unconstrained.svg" alt="Structure learned on the adult dataset with no constraints. 'Income' is usually the target variable, but this structure shows that 'Income' affects 'Relationship,' 'Gender,' and Occupation." style="display: block; margin-left: auto; margin-right: auto; max-height: 400px">
 
-Similar to the Naive Bayes case from the "Tennis" example, you might be able to make guesses when knowing the prior probabilities of the outcomes and its influence on other variables. But "Income" was what we wanted to predict, and a network rooted at "Income" means that it will never occur after a `THEN`.
+Parts of this might look reasonable: the structure shows a relationship between *Income* and *Occupation*, and a
+relationship between *Occupation* and *Education*.
+If *Income* is still the target we're interested in, we see influences between
+*Relationship,* *Gender,* and *Occupation.* Each of these can be explored separately (the intersection of gender,
+race, family structure&mdash;and their effects in combination on economic opportunities in the United States
+is a massive topic that I cannot hope to fully discuss here).
 
-```python
-print_rules(unconstrained_model, data.columns, mapping)
+But similar to the Naive Bayes case from the "Tennis" example, the extracted rules are a little difficult to
+interpret since *Income* is the root of the network, meaning the variable cannot occur after a `THEN`.
+But also similar to the "Tennis" example, this might be enough to hint at some likely events, such as income
+tending to be higher for people identified as husbands.
+
+```haskell
+IF (Income > 50,000) THEN (Relationship = Husband)
+    CF = 3.10
 ```
 
-  ```output
-  Probabilities:
-  - Income
-      P( Income = <=50K ) = 0.75
-      P( Income = >50K ) = 0.25
-  ...
-  ```
+This also finds some cases where conditional influences are almost perfectly correlated,
+such as an observation that "husbands are married."
 
-Here we see a case where the confidence factor is infinite. Since the confidence factor is calculated
-by weighing the evidence for and against something, `CF = inf` means there was no contrary evidence.
-
-```
+```haskell
 IF (Relationship = Husband ^ Gender = Female) THEN (MaritalStatus = Married-civ-spouse)
     CF = inf
 IF (Relationship = Husband ^ Gender = Male) THEN (MaritalStatus = Married-civ-spouse)
     CF = 1383.67
 ```
 
+This *might* also be a situation where rule extraction can help reveal special cases (or mistakes) that occur during
+data collection. I'd previously used this dataset, but this is the first time I noticed situations where:
+"*a husband is female*," and "*a wife is male*."[^unsure-if-this-was-known]
+
+[^unsure-if-this-was-known]: I spent some time plugging queries into Google Scholar to see if anyone else had noticed this. Even searching broadly with queries like "adult dataset female husband" or "adult dataset male wife" didn't seem to reveal anything.
 
 <div style="overflow-x: auto;">
 <table class="dataframe">
@@ -784,14 +873,17 @@ IF (Relationship = Husband ^ Gender = Male) THEN (MaritalStatus = Married-civ-sp
 </table>
 </div>
 
+Now that we've seen an unconstrained version, we'll iterate to answer our question about Income.
+
+---
 
 ### Adding constraints to guide the structure learning
 
-`pomegranate` provides some control over variable influences using the `include_edges` or `exclude_edges` parameters in the `.from_samples` method.
+Since we're interested in "Income," it could make sense to require: "*Income cannot be the parent of any node.*"
 
-Since we're interested in "Income," this adds a constraint requiring: "*Income cannot be the parent of any node.*"
+{% include note.html name="Are we causal yet?" content="<br/>This might help with explainability, but a <i>causal</i> interpretation may still be incorrect. Imagine modifying the value of one variable and observing what happens, such as an influence between 'Income' and 'Education.' We might expect something like 'people with some college credits earn more than people with a high school education alone,' but it's also possible that high-wage earners have better opportunities to continue their education and earn professional degrees.<br/><br/>We might observe such conditional influences when observing data over time, but here we're working with a snapshot at a specific point." %}
 
-This tends to produce a network rooted at "MaritalStatus," with "Income" having "Relationship" and "Education" as parents.
+Again we'll enforce this through excluding specific edges:
 
 ```python
 excluded_edges = [tuple([8, i]) for i in range(len(data.columns)-1)]
@@ -803,76 +895,66 @@ model = BayesianNetwork().from_samples(
 )
 ```
 
-<img src="/images/blog/bn-rule-extraction/adult/adult-constrained.svg" alt="Structure learned on the adult dataset with a constraint that Income cannot be the parent of any other variable.">
+<img src="/images/blog/bn-rule-extraction/adult/adult-constrained.svg" alt="Structure learned on the adult dataset with a constraint that Income cannot be the parent of any other variable." style="display: block; margin-left: auto; margin-right: auto;">
 
-## Ideas and Further Thoughts
+This tends to produce networks rooted at "MaritalStatus," and highlights "Relationship" and
+"Education" influencing "Income." The differences are pretty stark when contrasting people
+with a high school education against those with professional degrees.
 
-### (1) Rules with equally likely outcomes
-
-It's pretty common to find cases where we could refine the rules. Consider these two cases:
-
-```python
-if (Outlook == "sunny" and Wind == "strong"):
-    PlayTennis = ("no", 1.0)
-
-if (Outlook == "sunny" and Wind == "strong"):
-    PlayTennis = ("yes", 1.0)
+```haskell
+IF (Education = HS-grad ^ Relationship = Husband) THEN (Income <= 50,000)
+    CF = 2.13
+IF (Education = HS-grad ^ Relationship = Not-in-family) THEN (Income <= 50,000)
+    CF = 20.97
+IF (Education = HS-grad ^ Relationship = Other-relative) THEN (Income <= 50,000)
+    CF = 38.33
 ```
 
-(1) The conditions are the same, (2) the confidence factors for both outcomes are the same, but (3) the *outcomes are different*. This might be refined to say something like: "*If the outlook is sunny and the wind is strong, it's equally likely that the person plays tennis.*"
+Phrased another way: at the low and high ends of education, relationship status doesn't appear to make any
+difference in income.
+
+```haskell
+IF (Education = Doctorate ^ Relationship = Husband) THEN (Income > 50,000)
+    CF = 5.13
+IF (Education = Doctorate ^ Relationship = Not-in-family) THEN (Income > 50,000)
+    CF = 1.23
+IF (Education = Doctorate ^ Relationship = Other-relative) THEN (Income > 50,000)
+    CF = inf
+```
+
+Between the extreme ends, the story seems a bit more nuanced.
+
+For example, it appears that people with an associate's degree (or vocational
+training) are slightly more likely to make over $50,000 if they are also married:
+
+```haskell
+IF (Education = Assoc-acdm ^ Relationship = Wife) THEN (Income > 50,000)
+    CF = 1.12
+IF (Education = Assoc-voc ^ Relationship = Wife) THEN (Income > 50,000)
+    CF = 1.48
+```
+
+This also seems to highlight cases where people with a *higher education*
+but *less-consistent living arrangements*&mdash;such as people in a
+household with bachelors degrees that are not living
+with their immediate family members&mdash;earn less:
+
+```haskell
+IF (Education = Bachelors ^ Relationship = Not-in-family) THEN (Income <= 50,000)
+    CF = 4.80
+IF (Education = Bachelors ^ Relationship = Other-relative) THEN (Income <= 50,000)
+    CF = 12.67
+```
 
 ---
 
-### (2) Being Infinitely confident: limitations of likelihood ratios
+## Ideas and Further Thoughts
 
-Now consider a case like this:
+I've found this approach to be pretty helpful in some of the health informatics problems I currently
+work on, and more broadly I suspect this could help reveal deterministic paths within uncertain models,
+shed light on cases where domain expertise or more data are required, or perhaps reveal "bugs" in the
+data where a value was incorrectly recorded.
 
-```python
-if (Outlook == "overcast" and Wind == "strong"):
-    PlayTennis = ("yes", inf)
-```
-
-This occurs here because we have two examples where the outlook is overcast and the wind is strong; and our imaginary user played tennis on both days:
-
-```console
-   PlayTennis   Outlook    Wind
--------------------------------
-6         yes  overcast  strong
-11        yes  overcast  strong
-?          no  overcast  strong    <-- never observed in the training data
-```
-
-There are two interpretations for "infinite confidence" here. Either (1) the relationship is determinitic and the user always plays tennis on overcast, windy days; or (2) we didn't didn't observe enough cases to adequately assess how confident we should be.
-
-Extracting rules from the Bayes net resulted in four of these:
-
-```python
-if (Outlook == "overcast" and Wind == "strong"):
-    PlayTennis = ("yes", inf)
-if (Outlook == "overcast" and Wind == "weak"):
-    PlayTennis = ("yes", inf)
-if (Outlook == "rain" and Wind == "strong"):
-    PlayTennis = ("no", inf)
-if (Outlook == "rain" and Wind == "weak"):
-    PlayTennis = ("yes", inf)
-```
-
-I suspect this could help reveal deterministic paths within uncertain models, shed light on cases where domain expertise or more data are required, or perhaps reveal "bugs" in the data where a variable that should be dependent on another was incorrectly recorded.
-
-## Some brief remarks
-
-I read a decent amount on Bayesian networks
-since the modeling approach tends to align
-really well with health informatics problems. Around October 2020 I stumbled into a 2010 paper by
-Vanathi Gopalakrishnan, Jonathan L. Lustgarten,
-Shyam Visweswaran, and Gregory F. Cooper.
-
-The paper positioned itself as a technique
-for learning logical rules, but around
-ten years passed and the fields of
-"*explainable or interpretable machine learning*" are better defined, which in
-hindsight made this paper look more like
-a post-hoc explanations technique for
-a Bayesian network.
-
-["Bayesian rule learning for biomedical data mining"](https://academic.oup.com/bioinformatics/article/26/5/668/212302)
+Explaining Bayesian networks is an interesting paper in itself, see the paper I wrote with Athresh
+and Harsha on [extracting qualitative influence statements](/publications/quake-gdm/), and some
+of the [Starling Lab projects](https://starling.utdallas.edu/projects/).
