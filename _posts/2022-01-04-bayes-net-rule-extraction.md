@@ -2,7 +2,7 @@
 layout: article
 title: "Extracting Interpretable Rules from Bayesian Networks in Python"
 description:
-date: 2022-01-01
+date: 2022-01-04
 excerpt: I read a bioinformatics paper on Bayesian rule learning. With ten years of hindsight, it looked a lot like an explainability technique.
 categories: blog
 tags: ["machine-learning"]
