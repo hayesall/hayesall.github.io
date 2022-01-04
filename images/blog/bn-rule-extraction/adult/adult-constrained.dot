@@ -1,0 +1,8 @@
+digraph adult_constrained {
+    MaritalStatus -> Gender, Relationship
+    Relationship -> Gender, Occupation, Race, Income
+    Gender -> Occupation
+    Race -> NativeCountry
+    Occupation -> WorkClass, Education
+    Education -> Income
+}

@@ -1,0 +1,4 @@
+digraph simple_model {
+  node [shape=circle, width=1]
+  X -> T
+}
