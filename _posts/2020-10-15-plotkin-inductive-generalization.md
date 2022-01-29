@@ -1,6 +1,6 @@
 ---
 layout: article
-title: "Revisiting 'A Note on Inductive Generalization'"
+title: "θ-Subsumption: A Tutorial on Inductive Generalization"
 description: "Here I discuss Plotkin's 1970 paper on inductive generalization, an important paper in some portions of the programming languages and inductive logic programming communities."
 date: 2020-11-23
 excerpt: >-
@@ -15,38 +15,77 @@ image:
   feature: feature/inductive-generalization.jpg
 ---
 
+## Introduction
+
 Here I discuss Gordon D. Plotkin's 1970 *Machine Intelligence*[^1] paper on inductive
 generalization, an important paper in some portions of the programming
 languages and inductive logic programming communities.
 
+{% include toc.html %}
+
+## Background
+
+A core goal of artificial intelligence is to learn general
+knowledge about the world through observation or interaction,
+and formalize that knowledge to use it later.
+
+Imagine that you're manipulating a couple objects[^gallium-footnote]
+and notice that both melt around 30°C:
+
+[^gallium-footnote]: ~85.5°F, i.e. your body temperature is high enough that holding pieces of causes them to turn from a solid to a liquid)
+
 ```
-Heating THIS bit of iron to 419°C caused it to melt.
-Heating THAT bit of iron to 419°C caused it to melt.
+Heating THIS bit of gallium to 30°C caused it to melt.
+Heating THAT bit of gallium to 30°C caused it to melt.
 ```
 
-Formalized as:
+We'll invent some notation to formalize this:
 
 ```racket
-BitOfIron(bit1) ∧ heated(bit1, 419) ⟹ Melted(bit1)
-BitOfIron(bit2) ∧ heated(bit2, 419) ⟹ Melted(bit2)
+BitOfGallium(bit1) ∧ Temperature(bit1, 30) ⟹ State(bit1, Liquid)
+BitOfGallium(bit2) ∧ Temperature(bit2, 30) ⟹ State(bit2, Liquid)
 ```
 
-What is the generalization of this?
+[*Induction*](https://en.wikipedia.org/wiki/Inductive_reasoning) is
+an approach where we try to generalize observations into general
+rules.
+
+Since we saw that two pieces of iron melted at 30°C, we
+might conclude that *all* pieces of iron are liquid at
 
 ```racket
-(x) BitOfIron(x) ∧ heated(x, 419) ⟹ Melted(x)
+∀.(x) BitOfGallium(x) ∧ Temperature(x, 30) ⟹ State(x, Liquid)
 ```
 
-## Preliminaries
+## Preliminaries - Formal Logic
 
-There are three concepts important for our implementation:
+Logic is probably the most abstract tool we have. As an
+unfortunate side-effect, it's sometimes tough to know where you are
+in the concept hierarchy.
+
+Usually I picture the concept hierarchy something like this, where
+branches show which representations may be nested within another,
+and double implication (⇔) shows synonyms for the same concept.[^fuzzy-definitions]
+
+[^fuzzy-definitions]: As a concrete example, [Structures (in mathematical logic)](https://en.wikipedia.org/wiki/Structure_(mathematical_logic)) can be viewed as a tool for formalizing the syntax and semantics of first-order logic. Structures&mdash;and mathematical logic by extension&mdash;can also be viewed as a generalization of the groups, rings, fields, and vector spaces that show up in abstract algebra.
+
+```
+Mathematical Logic ⇔ Formal Logic ⇔ Symbolic Logic
+└── First-Order Logic ⇔ Predicate Logic ⇔ First-Order Predicate Calculus
+    └── Propositional Logic ⇔ Propositional Calculus
+```
+
+The discussion here concerns "First-Order Logic," and will need to
+represent four things. In Plotkin's notation:
 
 1. Terms: $$t, t_{1}, u, ...$$
 2. Literals: $$L, L_{1}, M, ...$$
-3. Clauses: $$D, D_{1}, D, ...$$
+3. Clauses: $$C, C_{1}, D, ...$$[^2]
 4. Functions and Predicates: $$\phi$$, or the negation of predicates
 
-I find these pretty confusing, so I'll ground them in a specific example:
+[^2]: The exact phrasing on page 154 is: $$D, D_{1}, D$$.
+
+Let's see each of these in the context of an example.
 
 \\[
 \color{orange}{P}(\color{blue}{f}(\color{magenta}{a}, \color{magenta}{b}), \color{blue}{g}(\color{magenta}{m}), \color{magenta}{y}, \color{blue}{h}(\color{blue}{g}(\color{magenta}{m}), \color{magenta}{n}))
@@ -65,7 +104,39 @@ I find these pretty confusing, so I'll ground them in a specific example:
   $$\color{blue}{h}(\color{blue}{g}(\color{magenta}{m}), \color{magenta}{n}))$$
   is a function of one function and one variable.
 
-## Theorem 1
+Here's another example uses negation, represented with the horizontal bar over
+the predicate:
+
+\\[
+\overline{f(a,b)}
+\\]
+
+## Preliminaries - Designing a Representation
+
+We should start is by thinking through how our Literals, Functions, and
+Variables will be represented. Choosing a representation will inform how we
+think about implementing the algorithm. Since we're in a Lisp, something built
+from
+[S-expressions](https://en.wikipedia.org/wiki/S-expression)
+(or [X-expressions](https://docs.racket-lang.org/txexpr/)) seems reasonable.
+Our units are still $$\color{orange}{\text{Literals}}$$,
+$$\color{magenta}{\text{Variables}}$$, and $$\color{blue}{\text{Functions}}$$;
+so we'll be explicit and represent each as tagged lists.
+
+```racket
+(Variable "x")
+(Function "f" ())
+(Literal "P" ())
+```
+
+More complicated words may be composed from simple units. $$P(f(a, b), c)$$ is
+written:
+
+```racket
+(Literal "P" ((Function "f" ((Variable "a") (Variable "b")) (Variable "c"))))
+```
+
+## Theorem 1 - Rewriting the imperative algorithm into a recursive one
 
 <figure>
   <img src="/images/blog/plotkin-inductive-generalization/theorem1.jpg" alt="The original theorem from the paper. Text reproduced below this image." style="display: block; margin-left: auto; margin-right: auto;">
@@ -92,35 +163,8 @@ terminates at stage 3, and the assertion made there is then correct.
 5. Change $$\varepsilon_{i}$$ to $$\lbrace t_{i} \mid x \rbrace \varepsilon_{i}(i = 1, 2)$$.
 6. Go to 2.
 
-## Rewriting the imperative algorithm into a recursive one
-
 This implements a solution in [Racket](https://racket-lang.org), a Lisp dialect
 and language for implementing other languages.
-
-### Designing a representation
-
-We should start is by thinking through how our Literals, Functions, and
-Variables will be represented. Choosing a representation will inform how we
-think about implementing the algorithm. Since we're in a Lisp, something built
-from
-[S-expressions](https://en.wikipedia.org/wiki/S-expression)
-(or [X-expressions](https://docs.racket-lang.org/txexpr/)) seems reasonable.
-Our units are still $$\color{orange}{\text{Literals}}$$,
-$$\color{magenta}{\text{Variables}}$$, and $$\color{blue}{\text{Functions}}$$;
-so we'll be explicit and represent each as tagged lists.
-
-```racket
-(Variable "x")
-(Function "f" ())
-(Literal "P" ())
-```
-
-More complicated words may be composed from simple units. $$P(f(a, b), c)$$ is
-written:
-
-```racket
-(Literal "P" ((Function "f" ((Variable "a") (Variable "b")) (Variable "c"))))
-```
 
 ### 1. Base Case
 
@@ -288,7 +332,7 @@ our goal is to return portions of the word unchanged:
   `(Literal ,n ,(substitute args (caddr V₂) t ℕ))]
 ```
 
-### 4. Putting the pieces together in the recursive call
+### 4. Recursion
 
 ```racket
 (define (antiunify W₁ W₂)
@@ -369,7 +413,7 @@ This gives us a reasonably-concise 52 lines of code.
     ['() '()]))
 {% endhighlight %}
 
-## Critique and closing comments
+## Critique
 
 This intended to communicate the main ideas introduced by Plotkin in the paper.
 The solution has quite a few inefficiencies that should be addressed.
@@ -381,5 +425,14 @@ This only covers Theorem 1 and the first few pages of the Plotkin paper. Two
 more theorems are needed before we can generalize observed evidence like the
 example shown in the opening section of this post. Those will have to be
 reserved for a future post.
+
+## Applications in Inductive Logic Programming
+
+The algorithm described in Plotkin's was later referred to as
+θ-subsumption. In following work by Luc De Raedt and others, it
+became the *most-used* method subroutine in
+inductive logic programming.
+
+https://www.fi.muni.cz/~popel/lectures/complog/slides/ILP-2.pdf
 
 [^1]: G. Plotkin. 1970. "A Note on Inductive Generalization"
