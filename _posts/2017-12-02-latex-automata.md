@@ -6,12 +6,12 @@ date: 2017-12-02
 excerpt: This short guide collects some examples of drawing finite state machines using the Tikz LaTeX library.
 categories: blog
 tags: ["automata"]
+comments: true
 redirect_from:
   - /latex-automata/
 image:
   teaser: teaser/automata_teaser.png
-  feature: feature/automata_finite_state_diagrams.png
-  text: "LaTeX Finite Automata with Tikz"
+  feature: feature/automata_finite_state_diagrams.jpg
 ---
 
 When I was TA'ing for Automata Theory, the in-browser finite-state machine creators I found tended to feel either a bit restricted or unable to generate high-quality automata images. Lo and behold, LaTeX already had a package which produced diagrams from a description.

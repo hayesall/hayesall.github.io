@@ -1,3 +1,28 @@
+- authors: Athresh Karanam, Alexander L. Hayes, Harsha Kokel, David M. Haas, Predrag Radivojac, and Sriraam Natarajan
+  year: 2021
+  title: A Probabilistic Approach to Extract Qualitative Knowledge for Early Prediction of Gestational Diabetes
+  date: June 15-18, 2021
+  venue: Nineteenth International Conference on Artificial Intelligence in Medicine
+  location: Online (Hosted in Porto, Portugal)
+  doi: https://doi.org/10.1007/978-3-030-77211-6_59
+  pdf: https://hayesall.com/publications/quake-gdm.pdf
+- authors: Alexander L. Hayes
+  year: 2020
+  title: "srlearn: A Python Library for Gradient-Boosted Statistical Relational Models"
+  venue: Ninth International Workshop on Statistical Relational AI
+  date: February 7, 2020
+  location: New York City, NY, USA
+  code: https://github.com/hayesall/srlearn-StarAI-2020-workshop/
+  pdf: https://hayesall.com/publications/srlearn-python-library.pdf
+  poster: https://hayesall.com/posters/srlearn-2020-workshop-poster.png
+- authors: Alexander L. Hayes
+  year: 2019
+  title: "srlearn: A Python Library for Gradient-Boosted Statistical Relational Models"
+  date: December 5, 2019
+  venue: HCI Fest Poster Presentation
+  location: Bloomington, IN, USA
+  code: https://github.com/hayesall/srlearn-StarAI-2020-workshop/
+  pdf: https://hayesall.com/publications/srlearn-python-library.pdf
 - authors: Alexander L. Hayes, Mayukh Das, Phillip Odom, and Sriraam Natarajan
   year: 2017
   title: "User Friendly Automatic Construction of Background Knowledge: Mode Construction from ER Diagrams"
@@ -5,8 +30,8 @@
   date: December 4-6, 2017
   location: Austin, TX, USA
   doi: https://doi.org/10.1145/3148011.3148027
-  code: https://github.com/starling-lab/Walk-ER/
-  pdf: https://starling.utdallas.edu/assets/pdfs/KCAP17Mode.pdf
+  code: https://github.com/hayesall/Walk-ER/
+  pdf: https://hayesall.com/publications/construction-background-knowledge.pdf
 - authors: Alexander Hayes, Savannah Smith, Ciabhan Connelly, Devendra Dhami, and Sriraam Natarajan
   year: 2016
   title: "Predicting Drug-Drug Interactions: Combining Machine Learning and Natural Language Processing"
@@ -14,7 +39,7 @@
   date: July 2016
   location: Bloomington, IN, USA
   code: https://github.com/hayesall/DrugInteractionDiscovery
-  poster: https://raw.githubusercontent.com/hayesall/DrugInteractionDiscovery/master/Overview/Poster/Drug-Drug%20Interactions%20Poster.png
+  poster: https://hayesall.com/posters/ddi-2016-prohealth-reu.png
 - authors: Aaron Porter and Alexander Hayes
   year: 2016
   title: "Stress-Induced Video Capture: Forensic Capture for People with Visual Impairments"

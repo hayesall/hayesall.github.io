@@ -4,6 +4,10 @@
   url: /blog/
   excerpt: Short thoughts worth sharing
   image:
+- title: "Publications"
+  url: /publications/
+  excerpt: Conference and Workshop Publications
+  image:
 - title: "CV"
   url: /cv/
   excerpt: Education, Experience, and Publications

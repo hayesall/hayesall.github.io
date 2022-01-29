@@ -9,6 +9,7 @@ excerpt: >-
   Informatics Building.
 categories: blog
 tags: ["arduino"]
+comments: true
 image:
   teaser: teaser/redboard_teaser.jpg
   feature: feature/redboard_feature.jpg

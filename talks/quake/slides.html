@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>A Probabilistic Approach to Extract Qualitative Knowledge for Early Prediction of Gestational Diabetes - Slides</title>
+    <link rel="stylesheet" href="../template/css/reveal.css" />
+    <link rel="stylesheet" href="../template/css/theme/simple.css" id="theme" />
+    <link rel="stylesheet" href="../template/css/highlight/github.css" />
+    <link rel="stylesheet" href="../template/css/print/paper.css" type="text/css" media="print" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+<section><img class="plain" src="images/slide01.svg" alt="Title: A Probabilistic Approach to Extract Qualitative Knowledge for Early Prediction of Gestational Diabetes. Authors: Athresh Karanam, Alexander L. Hayes, Harsha Kokel, David M. Haas, Predrag Radivojac, and Sriraam Natarajan." /></section>
+<section><img class="plain" src="images/slide02.svg" alt="Risk of Gestational Diabetes increases a Body Mass Index increases." /></section>
+<section><img class="plain" src="images/slide03.svg" alt="Same content as previous slide, but now a rule appears showing that the risk of gestational diabetes increases as BMI increases." /></section>
+<section><img class="plain" src="images/slide04.svg" alt="Motivation for working with qualitative influence statements include: human interpretability, alignment with how people think about risk, concisely expresses a trend over all variable-and-value combinations, and refine or repair models when data is noisy or sparse." /></section>
+<section><img class="plain" src="images/slide05.svg" alt="A data matrix is on the left, showing one dependent variable and four independent variables. On the right are four monotonic influence statements." /></section>
+<section>
+  <section><img class="plain" src="images/slide06.svg" alt="The data matrix and monotonic influence statements now point to a Bayesian Network. This illustrates prior work, and cites two papers (Altendorf et al. 2005 and Yang and Natarajan 2013) where data and QI statements were used as inductive bias to guide learning." /></section>
+  <section data-markdown>
+    - Eric E. Altendorf, Angelo C. Restificar, Thomas G. Dietterich (2005). "*[Learning from Sparse Data by Exploiting Monotonicity Constraints](https://arxiv.org/abs/1207.1364)
+*." p. 18-26, Proceedings of the Twenty-First Conference on Uncertainty in Artificial Intelligence
+    - Shuo Yang, Sriraam Natarajan (2013). "*[Knowledge Intensive Learning: Combining Qualitative Constraints with Causal Independence for Parameter Learning in Probabilistic Models](https://starling.utdallas.edu/assets/pdfs/KIL_ECML13.pdf)*", European Conference on Machine Learning (ECMLPKDD)
+  </section>
+</section>
+<section><img class="plain" src="images/slide07.svg" alt="The arrow from the rules to the Bayes net is now reversed: the Bayes net points to the rules, illustrating that we want to extract QI statements from a probabilistic model." /></section>
+<section><img class="plain" src="images/slide08.svg" alt="A red arrow now points from the data matrix to the rules, suggesting that going directly from data to rules without using a probabilistic model may be less effective." /></section>
+<section><img class="plain" src="images/slide09.svg" alt="The toy example from the previous slides are replaced with a small data matrix representing patient health data and gestational diabetes diagnoses. An arrow labeled PC Algorithm points to a Bayesian network. And an arrow labeled QuaKE points from the Bayes net to a list of rules." /></section>
+<section><img class="plain" src="images/slide10.svg" alt="A table compares the performance of the QuaKE algorithm compared to a baselines that only uses the data. QuaKE has a precision of 0.923 whereas the baseline only achieves 0.636. This answers the question: Does QuaKE help uncover rules that align with prior knowledge." /></section>
+<section><img class="plain" src="images/slide11.svg" alt="A table shows a monotonic influence statement (BMI and Gestational Diabetes) and a synergistic influence statement (Education, Smoking in the previous three months, and the affect on gestational diabetes). This illustrates a case where we recovered a rule that the expert expected, but also could provide an answer where prior knowledge was uncertain." /></section>
+<section>
+  <img class="plain" src="images/slide01.svg" alt="The conclusion slide shows the title and authors again, and has a link to the project webpage." />
+  <a style="text-decoration:underline;" href="https://starling.utdallas.edu/papers/QuaKE/">https://starling.utdallas.edu/papers/QuaKE/</a>
+</section>
+
+</div>
+</div>
+
+    <script src="../template/lib/js/head.min.js"></script>
+    <script src="../template/js/reveal.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // Optional libraries used to extend on reveal.js
+      var deps = [
+        { src: '../template/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '../template/plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: '../template/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: '../template/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: '../template/plugin/zoom-js/zoom.js', async: true },
+        { src: '../template/plugin/notes/notes.js', async: true },
+        { src: '../template/plugin/math/math.js', async: true }
+      ];
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        dependencies: deps
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal.getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"transition":"none","controls":true,"progress":true}, queryOptions);
+    </script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>

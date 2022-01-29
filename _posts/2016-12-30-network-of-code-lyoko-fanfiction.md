@@ -6,10 +6,12 @@ date: 2016-12-30
 excerpt: 6520 stories written in 15 languages over the course of twelve years; a fanfiction community visualized.
 categories: blog
 tags: ["social-network", "web-scraping"]
+comments: true
 redirect_from:
   - /network-of-code-lyoko-fanfiction/
 image:
   teaser: teaser/directed_fanfiction_graph.jpg
+  feature: feature/cl-fanfiction-network.jpg
 ---
 
 This was originally part of a final project for Search Informatics, but my fascination with network visualization cropped up here and I thought it was worth sharing. This is a condensed version of the [full article](https://hayesall.github.io/CLFanfictionSearchEngine/), and naturally the code is available on [GitHub](https://github.com/hayesall/CLFanFictionSearchEngine).

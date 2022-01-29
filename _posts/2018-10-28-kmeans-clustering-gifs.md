@@ -3,13 +3,16 @@ layout: article
 title: "Sequential k-Means Clustering on Gifs (with Animations)"
 description:
 date: 2018-10-28
+modified: 2018-10-30
 excerpt: k-means clustering can be used on images to automatically perform color quantization. This demonstrates how to cluster colors in an animation.
 categories: blog
 tags: ["machine-learning"]
+comments: true
 redirect_from:
   - /kmeans-clustering-gifs/
 image:
   teaser: teaser/kmeans_teaser.png
+  feature: feature/kmeans_feature.png
 ---
 
 One of the common demonstrations for k-means clustering is as a pre-processing step for image segmentation, or as an automatic way to perform color quantization.
@@ -93,5 +96,3 @@ One idea might be to run clustering on a target image to find a set of centers, 
 This turns out to be a harder problem.
 
 Just because two colors appear with similar relative frequencies in two different images, it does not mean that those shades will make sense in another image. However, this leaves an open problem to try out in the future.
-
-*Last Updated: Tuesday, October 30, 2018.* Code will be posted in the next week or so.
