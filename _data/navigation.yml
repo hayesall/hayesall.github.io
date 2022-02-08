@@ -8,11 +8,15 @@
   url: /publications/
   excerpt: Conference and Workshop Publications
   image:
+- title: "Software"
+  url: /software/
+  excerpt: "Open source software"
+  image:
 - title: "CV"
   url: /cv/
   excerpt: Education, Experience, and Publications
   image:
-- title: "Open Source"
-  url: /open-source/
-  excerpt: Open source software
+- title: "Teaching"
+  url: /teaching/
+  excerpt: Office Hours and Classes
   image:
