@@ -1,0 +1,31 @@
+# Tags used on _software pages.
+# These are loaded
+
+- name: "Statistical Relational Learning"
+  order: 1
+  excerpt: >-
+    "Statistical Relational Learning" (SRL) is a
+    subfield of artificial intelligence that
+    combines logical representations with
+    probabilistic reasoning. I've built some tools
+    to help users incorporate
+    these models into the wider machine learning
+    ecosystem, or apply them to new applications.
+    Also see: <a target="_blank" href="https://github.com/srlearn/">https://github.com/srlearn/</a>
+- name: "Bayesian Networks"
+  order: 2
+  excerpt: >-
+    Tools for working and modeling with Bayesian networks.
+- name: "Miscellaneous"
+  order: 3
+  excerpt: >-
+    Occasionally one of my projects has a need that
+    seems like it could be helpful elsewhere. So I extract
+    the code into a more-general utility.
+- name: "Course Projects"
+  order: 4
+  excerpt: >-
+    Things I built while working on a course or
+    learning something new. Generally I built these to
+    "learn lessons" rather than "develop for long-term support,"
+    so the quality has high variance.

@@ -12,7 +12,11 @@
     font-weight: 700;
     text-align: left;
     text-transform: uppercase;
-    padding: 10px;
+    padding-right: 10px;
+  }
+
+  ol {
+    padding-left: 0;
   }
 }
 
@@ -27,6 +31,6 @@
     text-transform: uppercase;
     padding: 10px;
   }
-
   display:inline;
+
 }
