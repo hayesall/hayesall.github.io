@@ -17,6 +17,8 @@ primary-language: java
 
 - **Source Code**: [{{ page.github-url }}]({{ page.github-url }})
 
+---
+
 ## Getting Started
 
 SRLBoost can be built as a maven package. For example, on Windows:
@@ -47,7 +49,7 @@ Full notes are available with the repository: [https://github.com/srlearn/SRLBoo
 - At one point there was discussion around developing a
   "[BoostSRL-Lite](https://github.com/starling-lab/BoostSRL-Lite/)"
   implementation. But this didn't really go anywhere (and as you'll see
-  in the benchmark, it wasn't very "lite").
+  in the benchmark, it wasn't especially *lite*).
 
 SRLBoost aims to be a small and fast core&mdash;not to implement every
 possible feature.
