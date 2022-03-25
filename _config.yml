@@ -1,9 +1,10 @@
 # Site wide configuration
 
 title: "hayesall.com"
-description: "Alexander L. Hayes • Home • hayesall.com"
+description: "Alexander L. Hayes • Home • hayesall.com"
 logo: # 120x120 px default image used for Twitter summary card
 teaser: # 400x250 px default teaser image used in image archive grid
+software-placeholder: software-placeholder.png
 locale: en
 url: https://hayesall.com
 feed:
@@ -48,6 +49,12 @@ collections:
   publications:
     permalink: /publications/:title/
     output: true
+  software:
+    permalink: /software/:title/
+    output: true
+  projects:
+    permalink: /projects/:title/
+    output: true
 
 include:
   - .htaccess
@@ -73,6 +80,7 @@ exclude:
   - log
   - node_modules
   - package.json
+  - package-lock.json
   - spec
   - tmp
   - vendor

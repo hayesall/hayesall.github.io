@@ -22,7 +22,7 @@ Bloomington, IN 47401
 
 ## Technical Skills
 
-**Languages**: Python, Shell Scripting, Java, C/C++, JavaScript, Racket
+**Languages**: Python, Shell Scripting, Java, C/C++, JavaScript, Racket, Julia
 
 **Libraries**: NumPy, SciPy, scikit-learn, Pandas, NetworkX, pytest
 
@@ -124,6 +124,7 @@ Department of Informatics and Computer Science
 
 ## Conference Attendance
 
+- **International Conference on Artificial Intelligence in Medicine (AIME)** 2021: *Online*, Hosted in Porto, Portugal. Spotlight Paper Presentation. (2021-06-15, 2021-06-18) [Conference URL](https://aime21.aimedicine.info/)
 - **Association for the Advancement of Artificial Intelligence (AAAI)** 2020: Hilton New York Midtown, New York, New York, USA. Workshop Poster Presentation. (2020-02-06, 2020-02-08)
   - Ninth International Workshop on Statistical Relational AI (StarAI 2020) [Workshop URL](http://www.starai.org/2020/)
 - **International Conference of Machine Learning (ICML)** 2019: Long Beach Convention Center, Long Beach, California, USA. Attendee. (2019-06-14, 2019-06-15)

@@ -30,7 +30,6 @@
 	.bullet-icon {
 		float: left;
 		background: $base-color;
-		padding: $icon-bullet-size /4;
 		border-radius: 50%;
 		width: $icon-bullet-size * 1.25;
 		height: $icon-bullet-size * 1.25;
@@ -39,12 +38,12 @@
 		margin-left: $icon-bullet-size * 1.4;
 		margin-bottom: 2em;
 	}
-	h2 {
+	h3 {
 		margin-top: 0;
-		@include font-size(20,no);
+		@include font-size(22,no);
 		display: inline-block;
 	}
 	p {
-		@include font-size(14);
+		@include font-size(20);
 	}
 }
