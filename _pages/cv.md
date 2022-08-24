@@ -49,22 +49,38 @@ Indiana University, Bloomington, IN
 ## Experience
 
 **Indiana University, Bloomington**  
-ProHealth Lab, Luddy School of Informatics, Computer Science, and Engineering
+Luddy School of Informatics, Computer Science, and Engineering
 
-- **Research Assistant** &ndash; *ProHealth Lab* &ndash; *Precision Health Initiative* (January 2019 &mdash; **Present**)  
+- **Research Assistant** &mdash; *Computer Vision Lab* (January 2022 &mdash; **Present**)
+
+  - Investigated explainability in time series problems
+  - Implemented a Bayesian network (BN) explainability technique as a Python package targeting the pomegranate library
+  - Extended the technique toward handling time series problems where the sequence is represented by a dynamic Bayesian network (DBN)
+
+- **Mentor - Research Experience for Undergraduates** &mdash; *ProHealth Lab* (May 2022 &mdash; July 2022)
+
+  - Mentored for a project analyzing smartwatch data alongside clinical data
+  - Extended prior work for infrastructure development in the Hoosier Moms Cohort
+  - Wrote course material for exploratory data analysis, scientific programming, and git
+
+- **Research Assistant** &ndash; *ProHealth Lab* &ndash; *Precision Health Initiative* (January 2019 &mdash; December 2021)
 
   - Secondary analysis on incidence of gestational diabetes
     - Developed tools for data cleaning and pre-processing for creating reproducible data partitions: [numom2b.org](http://numom2b.org).
     - Solved the binary class imbalance problem (imbalance of 1 to 32).
     - Reduced features (original feature space ~7000 variables)
     - Explained predictions for a clinical decision support setting.
+  - Infrastructure development for Hoosier Moms Cohort
+    - Implemented caching to work with snapshots of the database
+    - Decreased analysis time from >72 hours to <5 minutes
+    - Prototyped a dashboard for exploratory visualization ([hmc-dashboard](https://github.com/iuprohealth/hmc-dashboard))
 
 **CareBand Inc.**  
 222 West Merchandise Mart Plaza #1230, Chicago, IL
 
-- **Developer and Machine Learning Research Consultant** (February 2020 &mdash; **Present**)  
+- **Developer and Machine Learning Research Consultant** (February 2020 &mdash; August 2020)
 
-  - Implemented solutions for indoor location tracking.  
+  - Implemented solutions for indoor location tracking.
   - Developed models to analyze trends in user behavior.
 
 **The University of Texas at Dallas**  
@@ -109,6 +125,9 @@ Department of Informatics and Computer Science
   - [Documentation](https://srlearn.readthedocs.io/en/latest/)
 - `SRLBoost`: A Java library for learning and inference with SRL models: up to 15x faster than existing libraries
   - [Source on GitHub](https://github.com/hayesall/SRLBoost)
+- `relational-datasets`: Python/Julia libraries for working with benchmark datasets for statistical relational learning
+  - [Source on GitHub](https://github.com/srlearn/relational-datasets/)
+  - [Documentation](https://srlearn.github.io/relational-datasets/)
 - `rnlp`: Converting text to relational facts
   - [Python Package Index](https://pypi.org/project/rnlp/)
   - [Source on GitHub](https://github.com/hayesall/rnlp)
