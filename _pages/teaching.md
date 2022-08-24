@@ -6,17 +6,18 @@ share: false
 excerpt: "Office Hours and Classes"
 ---
 
+{% assign all_courses = site.classes | reverse %}
+
 # Teaching
 
-I am currently a Research Assistant with the ProHealth Group, and will not be teaching this semester. If you need to set up an appointment, I can be reached at `hayesall@iu.edu`.
+I am assisting with "Introduction to Health Informatics" this semester:
 
-Past Courses
----
+- [{{ all_courses[0].title }}]({{ all_courses[0].url }})
 
-{% assign all_classes = site.classes | reverse %}
+## All Courses
 
 <ul>
-{% for page in all_classes %}
-  <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+{% for course in all_courses %}
+  <li><a href="{{ course.url }}">{{ course.title }}</a></li>
 {% endfor %}
 </ul>
