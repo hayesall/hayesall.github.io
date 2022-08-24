@@ -1,3 +1,10 @@
+- authors: Alexander L. Hayes, Lucas Newman-Johnson, David Crandall
+  year: 2022
+  title: Dynamic Bayesian Rule Learning for Interpretable Time Series Prediction
+  date: April 29, 2022
+  venue: Poster Presentation
+  location: Innovation Hall, IUPUI, Indianapolis, IN, USA
+  poster: https://hayesall.com/posters/dynamic_rule_extraction_poster_v1.pdf
 - authors: Athresh Karanam, Alexander L. Hayes, Harsha Kokel, David M. Haas, Predrag Radivojac, and Sriraam Natarajan
   year: 2021
   title: A Probabilistic Approach to Extract Qualitative Knowledge for Early Prediction of Gestational Diabetes
