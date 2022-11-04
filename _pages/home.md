@@ -19,6 +19,7 @@ excerpt: "Alexander L. Hayes is a Ph.D. Student at Indiana University (IU) Bloom
     <a itemprop="sameAs" href="https://github.com/hayesall/" class="btn-social github"><i class="icons fa fa-github fa-2x"> GitHub</i></a>
     <a itemprop="sameAs" href="https://scholar.google.com/citations?user=eAys7JgAAAAJ&hl=en" class="btn-social twitter"><i class="icons ai ai-google-scholar ai-2x"> Scholar</i></a>
     <a itemprop="sameAs" href="https://www.linkedin.com/in/alexanderlhayes/" class="btn-social linkedin"><i class="icons fa fa-linkedin fa-2x"> LinkedIn</i></a>
+    <a rel="me" href="https://vis.social/@hayesall" class="btn-social"><i class="icons fa fa-paint-brush fa-2x"> Mastodon</i></a>
     <a itemprop="sameAs" href="https://twitter.com/alexanderlhayes/" class="btn-social twitter"><i class="icons fa fa-twitter fa-2x"> Twitter</i></a>
     </center>
   </div>
