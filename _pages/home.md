@@ -28,15 +28,7 @@ excerpt: "Alexander L. Hayes is a Ph.D. Student at Indiana University (IU) Bloom
     <p>
       <span itemprop="name">Alexander L. Hayes</span>
 
-      is a Health Informatics Ph.D. Student working with
-
-      <span itemprop="knows" itemscope itemtype="http://schema.org/Person"><a itemprop="url" href="https://wphomes.soic.indiana.edu/connelly/">Professor <span itemprop="name">Kay Connelly</span></a></span>
-
-      and the
-
-      <span itemprop="affiliation" itemscope itemtype="http://schema.org/EducationalOrganization"><a itemprop="url" href="https://prohealth.luddy.indiana.edu/"><span itemprop="name">ProHealth Informatics Group</span></a></span>
-
-      on the Precision Health Initiative at
+      is a Health Informatics Ph.D. Student at
 
       <span itemprop="affiliation" itemscope itemtype="http://schema.org/EducationalOrganization"><link itemprop="url" href="https://www.indiana.edu/"><span itemprop="name">Indiana University Bloomington</span></span>.
 
