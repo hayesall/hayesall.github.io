@@ -36,7 +36,14 @@ Bloomington, IN 47401
 
 ## Education
 
-**Doctor of Philosophy (Ph.D.) Health Informatics**  
+**Doctor of Philosophy (Ph.D.) Health Informatics** (*in progress*)  
+2019–*present*  
+School of Informatics, Computing, and Engineering  
+Indiana University, Bloomington, IN
+
+
+**Master of Science (M.S.) Health Informatics**  
+2023  
 School of Informatics, Computing, and Engineering  
 Indiana University, Bloomington, IN
 
