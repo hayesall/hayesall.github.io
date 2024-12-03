@@ -37,13 +37,14 @@ Bloomington, IN 47401
 ## Education
 
 **Doctor of Philosophy (Ph.D.) Health Informatics** (*in progress*)  
-2019–*present*  
+*Mathematics Minor*  
+2019–*present*, expected graduation date: 2026  
 Luddy School of Informatics, Computing, and Engineering  
 Indiana University, Bloomington, IN
 
 
 **Master of Science (M.S.) Health Informatics**  
-2023  
+Class of 2023  
 Luddy School of Informatics, Computing, and Engineering  
 Indiana University, Bloomington, IN
 
@@ -58,13 +59,39 @@ Indiana University, Bloomington, IN
 **Indiana University, Bloomington**  
 Luddy School of Informatics, Computer Science, and Engineering
 
-- **Research Assistant** &mdash; *Computer Vision Lab* (January 2022 &mdash; **Present**)
+- **Instructor of Record** &mdash; (August 2024 &mdash; **Present**)
+
+  - Fall 2024 &ndash; *Information Infrastructure II* &ndash; INFO-I 211  
+    Taught from the book Erika and I wrote over the summer, adapting it from an asynchronous online course to a synchronous in-person course.
+
+- **Associate Instructor** &mdash; (January 2023 &mdash; July 2024)
+
+  - Summer 2024 &ndash; *Information Infrastructure II* &ndash; INFO-I 211 (asynchronous, online)  
+    *Supervisor*: Erika Lee  
+    Piloted GitHub Actions to finish putting the "auto" in autograding, and wrote the first draft of a book with Erika Lee for teaching an asynchronous web app development course.
+  - Spring 2024 &ndash; *Information Infrastructure II* &ndash; INFO-I 211  
+    *Supervisor*: Matt Hottell  
+    Large cohort (200+ students) stress-tested previous workflows. Worked on autograding infrastructure: enough to orchestrate copies of GitHub repos, automatically test them, or bootstrap a Flask application.
+  - Fall 2023 &ndash; *Information Infrastructure II* &ndash; INFO-I 211  
+    *Supervisor*: Matt Hottell  
+    Took a role as a course manager, writer, and grading. The key objective was to minimize the number of people touching the gradebook.
+  - Summer 2023 &ndash; *Information Infrastructure II* &ndash; INFO-I 211  
+    *Supervisor*: Matt Hottell  
+    Moved all course assignments into GitHub repositories, and introduced "unit testing" to motivate how we know when programs meet expectations.
+  - Summer 2023 &ndash; *Information Infrastructure I* &ndash; INFO-I 210  
+    *Supervisor*: Shabnam Kavousian  
+    Worked with Shabnam Kavousian to develop and teach an alternate "intro Python programming" curriculum with permission from the department chair and director of undergraduate studies. Collected data and wrote an internal pilot study, finding that the students who took the alternate I210 with Shabnam and I tended to outperform their peers in future classes.
+  - Spring 2023 &ndash; *Information Infrastructure II* &ndash; INFO-I 211  
+    *Supervisor*: Matt Hottell and Erika Lee  
+    Led two weekly lab sessions, hosted evening help sessions, guided students during lectures, and learned how the course worked.
+
+- **Research Assistant** &mdash; *Computer Vision Lab* (January 2022 &mdash; January 2023)
 
   - Investigated explainability in time series problems
   - Implemented a Bayesian network (BN) explainability technique as a Python package targeting the pomegranate library
   - Extended the technique toward handling time series problems where the sequence is represented by a dynamic Bayesian network (DBN)
 
-- **Mentor - Research Experience for Undergraduates** &mdash; *ProHealth Lab* (May 2022 &mdash; July 2022)
+- **Graduate Mentor - Research Experience for Undergraduates** &mdash; *ProHealth Lab* (May 2022 &mdash; July 2022)
 
   - Mentored for a project analyzing smartwatch data alongside clinical data
   - Extended prior work for infrastructure development in the Hoosier Moms Cohort
@@ -150,6 +177,7 @@ Department of Informatics and Computer Science
 
 ## Conference Attendance
 
+- **The 2024 Decoding the Disciplines Conference: Adapting Decoding for the Next Generation** 2024: Indiana University School of Education, Bloomington, Indiana. (2024-10-31, 2024-11-02) [Conference URL](https://decoding.webflow.io/events/decoding-conference-2024)
 - **International Conference on Artificial Intelligence in Medicine (AIME)** 2021: *Online*, Hosted in Porto, Portugal. Spotlight Paper Presentation. (2021-06-15, 2021-06-18) [Conference URL](https://aime21.aimedicine.info/)
 - **Association for the Advancement of Artificial Intelligence (AAAI)** 2020: Hilton New York Midtown, New York, New York, USA. Workshop Poster Presentation. (2020-02-06, 2020-02-08)
   - Ninth International Workshop on Statistical Relational AI (StarAI 2020) [Workshop URL](http://www.starai.org/2020/)
