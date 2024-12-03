@@ -20,7 +20,6 @@ excerpt: "Alexander L. Hayes is a Ph.D. Student at Indiana University (IU) Bloom
     <a itemprop="sameAs" href="https://scholar.google.com/citations?user=eAys7JgAAAAJ&hl=en" class="btn-social twitter"><i class="icons ai ai-google-scholar ai-2x"> Scholar</i></a>
     <a itemprop="sameAs" href="https://www.linkedin.com/in/alexanderlhayes/" class="btn-social linkedin"><i class="icons fa fa-linkedin fa-2x"> LinkedIn</i></a>
     <a rel="me" href="https://vis.social/@hayesall" class="btn-social"><i class="icons fa fa-paint-brush fa-2x"> Mastodon</i></a>
-    <a itemprop="sameAs" href="https://twitter.com/alexanderlhayes/" class="btn-social twitter"><i class="icons fa fa-twitter fa-2x"> Twitter</i></a>
     </center>
   </div>
 
@@ -45,25 +44,9 @@ excerpt: "Alexander L. Hayes is a Ph.D. Student at Indiana University (IU) Bloom
       He holds a B.S. <span itemprop="knowsAbout">Computer Science</span> from
 
       <span itemprop="alumniOf" itemscope itemtype="http://schema.org/EducationalOrganization">
-      <link itemprop="url" href="https://www.indiana.edu/"><span itemprop="name">Indiana University</span>
+      <link itemprop="url" href="https://www.indiana.edu/"><span itemprop="name">Indiana University</span>.
       </span>
 
-      and continues to collaborate with
-
-      <span itemprop="knows" itemscope itemtype="http://schema.org/Person"><a itemprop="url" href="https://personal.utdallas.edu/~sriraam.natarajan/">Professor <span itemprop="name">Sriraam Natarajan</span></a></span>
-
-      and his colleagues from the
-
-      <span itemprop="affiliation" itemscope itemtype="http://schema.org/EducationalOrganization"><a itemprop="url" href="https://starling.utdallas.edu"><span itemprop="name">StARLinG Lab</span></a></span>
-
-      at the
-
-      <span itemprop="affiliation" itemscope itemtype="http://schema.org/EducationalOrganization"><link itemprop="url" href="https://www.utdallas.edu/"><span itemprop="name">University of Texas at Dallas</span></span>.
-      </p>
-
-      <p>
-      Alexander is currently working in secondary analysis the nuMoM2b (new-mom-2-be) data set, where one aim is to determine early warning signs for gestational diabetes. Additional information about this project is
-      included in the <a href="https://doc.numom2b.org/en/latest/">nuMoM2b preprocessing documentation</a>.
       </p>
 
       <p>
