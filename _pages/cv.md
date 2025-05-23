@@ -14,7 +14,7 @@ share: false
 **hayesall@iu.edu**  
 Indiana University Bloomington  
 Luddy School of Informatics, Computing, and Engineering  
-ProHealth Lab: Informatics East 255  
+Myles Brand Hall West 210  
 918 E. 10th Street  
 Bloomington, IN 47401  
 
