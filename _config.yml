@@ -84,3 +84,4 @@ exclude:
   - spec
   - tmp
   - vendor
+  - "talks/template/*"
