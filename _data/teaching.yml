@@ -1,0 +1,219 @@
+- id: 2017-fall-utd-cs-4384-001
+  teaching_id:
+  term: Fall 2017
+  university: UT Dallas
+  code: CS 4384.001
+  name: Automata Theory
+  job_title: TA
+  enrollment: 75
+  github_repo_count:
+
+- id: 2018-spring-utd-cs-3377-501
+  teaching_id:
+  term: Spring 2018
+  university: UT Dallas
+  code: CS 3377.501
+  name: C Programming in a UNIX Environment
+  job_title: TA
+  enrollment: 57
+  github_repo_count:
+
+- id: 2018-fall-utd-cs-4384-001
+  teaching_id: 2018-fall-utd-cs-4384-001
+  term: Fall 2018
+  university: UT Dallas
+  code: CS 4384.001
+  name: Automata Theory
+  job_title: TA
+  enrollment: 75
+  github_repo_count:
+
+- id: 2022-fall-iu-info-i407
+  teaching_id: 2022-fall-iu-info-i407
+  term: Fall 2022
+  university: Indiana University Bloomington
+  code: INFO-I 407/507
+  name: Introduction to Health Informatics
+  job_title: AI
+  enrollment: 29
+  github_repo_count:
+
+- id: 2023-spring-iu-info-i211
+  teaching_id:
+  term: Spring 2023
+  university: Indiana University Bloomington
+  code: INFO-I 211
+  name: Information Infrastructure II
+  job_title: AI
+  enrollment: 129
+  github_repo_count: 258
+
+- id: 2023-summer-iu-info-i210
+  teaching_id:
+  term: Summer 2023
+  university: Indiana University Bloomington
+  code: INFO-I 210
+  name: Information Infrastructure I
+  job_title: AI
+  enrollment: 10
+  github_repo_count: 141
+
+- id: 2023-summer-iu-info-i211
+  teaching_id:
+  term: Summer 2023
+  university: Indiana University Bloomington
+  code: INFO-I 211
+  name: Information Infrastructure II
+  job_title: AI
+  enrollment: 28
+  github_repo_count: 260
+
+- id: 2023-fall-iu-info-i211
+  teaching_id:
+  term: Fall 2023
+  university: Indiana University Bloomington
+  code: INFO-I 211
+  name: Information Infrastructure II
+  job_title: AI
+  enrollment: 117
+  github_repo_count: 1.1k
+
+- id: 2024-spring-iu-info-i211
+  teaching_id:
+  term: Spring 2024
+  university: Indiana University Bloomington
+  code: INFO-I 211
+  name: Information Infrastructure II
+  job_title: AI
+  enrollment: 184
+  github_repo_count: 2.9k
+
+- id: 2024-summer-iu-info-i211
+  teaching_id:
+  term: Summer 2024
+  university: Indiana University Bloomington - Online
+  code: INFO-I 211 (Online)
+  name: Information Infrastructure II
+  job_title: AI
+  enrollment: 44
+  github_repo_count: 552
+
+- id: 2024-fall-iu-info-i211
+  teaching_id:
+  term: Fall 2024
+  university: Indiana University Bloomington
+  code: INFO-I 211
+  name: Information Infrastructure II
+  job_title: IoR
+  enrollment: 162
+  github_repo_count: 1.5k
+
+- id: 2025-spring-iu-info-i201
+  teaching_id:
+  term: Spring 2025
+  university: Indiana University Bloomington
+  code: INFO-I 201
+  name: Mathematical Foundations of Informatics
+  job_title: Visiting Lecturer
+  enrollment: 235
+  github_repo_count:
+
+- id: 2025-spring-iu-info-i211
+  teaching_id:
+  term: Spring 2025
+  university: Indiana University Bloomington
+  code: INFO-I 211
+  name: Information Infrastructure II
+  job_title: Visiting Lecturer
+  enrollment: 165
+  github_repo_count: 1.4k
+
+- id: 2025-summer-iu-info-i201
+  teaching_id:
+  term: Summer 2025
+  university: Indiana University Bloomington
+  code: INFO-I 201 (Online)
+  name: Mathematical Foundations of Informatics
+  job_title: AI
+  enrollment: 45
+  github_repo_count:
+
+- id: 2025-summer-iu-info-i211
+  teaching_id:
+  term: Summer 2025
+  university: Indiana University Bloomington
+  code: INFO-I 211 (Online)
+  name: Information Infrastructure II
+  job_title: AI
+  enrollment: 62
+  github_repo_count: 482
+
+- id: 2025-fall-iu-info-i201
+  teaching_id:
+  term: Fall 2025
+  university: Indiana University Bloomington
+  code: INFO-I 201
+  name: Mathematical Foundations of Informatics
+  job_title: Visiting Lecturer
+  enrollment: 181
+  github_repo_count:
+
+- id: 2025-fall-iu-info-i211
+  teaching_id:
+  term: Fall 2025
+  university: Indiana University Bloomington
+  code: INFO-I 211
+  name: Information Infrastructure II
+  job_title: Visiting Lecturer
+  enrollment: 169
+  github_repo_count: 1.4k
+
+- id: 2026-spring-iu-info-i211
+  teaching_id:
+  term: Spring 2026
+  university: Indiana University Bloomington
+  code: INFO-I 211
+  name: Information Infrastructure II
+  job_title: Visiting Lecturer
+  enrollment: 125
+  github_repo_count: 893
+
+- id: 2026-spring-iu-info-i365
+  teaching_id:
+  term: Spring 2026
+  university: Indiana University Bloomington
+  code: INFO-I 365
+  name: JavaScript
+  job_title: Visiting Lecturer
+  enrollment: 32
+  github_repo_count: 211
+
+- id: 2026-summer-iu-info-i201
+  teaching_id:
+  term: Summer 2026
+  university: Indiana University Bloomington
+  code: INFO-I 201 (Online)
+  name: Mathematical Foundations of Informatics
+  job_title: AI
+  enrollment: 56
+  github_repo_count:
+
+- id: 2026-fall-iu-info-i123
+  teaching_id:
+  term: Fall 2026
+  university: Indiana University Bloomington
+  code: INFO-I i123
+  name: Data Fluency
+  job_title: Visiting Lecturer
+  enrollment: TBD
+  github_repo_count: TBD
+
+- id: 2026-fall-iu-info-i211
+  teaching_id:
+  term: Fall 2026
+  university: Indiana University Bloomington
+  code: INFO-I i211
+  name: Information Infrastructure II
+  job_title: Visiting Lecturer
+  enrollment: TBD
+  github_repo_count: TBD

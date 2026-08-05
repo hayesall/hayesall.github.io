@@ -4,6 +4,10 @@
   url: /blog/
   excerpt: Short thoughts worth sharing
   image:
+- title: "Teaching"
+  url: /teaching/
+  excerpt: Office Hours and Classes
+  image:
 - title: "Publications"
   url: /publications/
   excerpt: Conference and Workshop Publications
@@ -15,8 +19,4 @@
 - title: "CV"
   url: /cv/
   excerpt: Education, Experience, and Publications
-  image:
-- title: "Teaching"
-  url: /teaching/
-  excerpt: Office Hours and Classes
   image:
