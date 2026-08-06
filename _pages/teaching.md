@@ -30,7 +30,7 @@ Below are semesters, courses, enrollment, and my role. *Just for fun*, the table
         {% assign all_courses = site.data.teaching | reverse %}
         {% for course in all_courses %}
         <tr>
-            <td>{{ course.term }}</td>
+            <td style="text-align:right;">{{ course.term }}</td>
 
             {% if course.teaching_id %}
               {% assign course_page = site.classes | where: "teaching_id", course.teaching_id | first %}
@@ -40,7 +40,7 @@ Below are semesters, courses, enrollment, and my role. *Just for fun*, the table
             {% endif %}
             
             <td>{{ course.code }}</td>
-            <td>{{ course.enrollment }}</td>
+            <td style="text-align:right;">{{ course.enrollment }}</td>
             <td>{{ course.job_title }}</td>
             <td>{{ course.github_repo_count | default: '-' }}</td>
         </tr>
