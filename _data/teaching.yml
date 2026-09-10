@@ -202,7 +202,7 @@
   teaching_id:
   term: Fall 2026
   university: Indiana University Bloomington
-  code: INFO-I i123
+  code: INFO-I 123
   name: Data Fluency
   job_title: Visiting Lecturer
   enrollment: TBD
@@ -212,7 +212,7 @@
   teaching_id:
   term: Fall 2026
   university: Indiana University Bloomington
-  code: INFO-I i211
+  code: INFO-I 211
   name: Information Infrastructure II
   job_title: Visiting Lecturer
   enrollment: TBD
