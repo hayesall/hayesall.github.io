@@ -14,20 +14,19 @@ excerpt: "Alexander L. Hayes is a Ph.D. Student at Indiana University (IU) Bloom
 
   <div class="homepage-second">
     <center>
-    <h1>Alexander L. Hayes • Ph.D. Student</h1>
+    <h1>Alexander L. Hayes</h1>
     <link itemprop="url" href="https://hayesall.com">
     <a itemprop="sameAs" href="https://github.com/hayesall/" class="btn-social github"><i class="icons fa fa-github fa-2x"> GitHub</i></a>
     <a itemprop="sameAs" href="https://scholar.google.com/citations?user=eAys7JgAAAAJ&hl=en" class="btn-social twitter"><i class="icons ai ai-google-scholar ai-2x"> Scholar</i></a>
     <a itemprop="sameAs" href="https://www.linkedin.com/in/alexanderlhayes/" class="btn-social linkedin"><i class="icons fa fa-linkedin fa-2x"> LinkedIn</i></a>
-    <a rel="me" href="https://vis.social/@hayesall" class="btn-social"><i class="icons fa fa-paint-brush fa-2x"> Mastodon</i></a>
     </center>
   </div>
 
   <div class="homepage-third">
     <p>
-      <span itemprop="name">Alexander L. Hayes</span>
+      <span itemprop="name" style="font-weight:bold;">Alexander L. Hayes</span>
 
-      is a Health Informatics Ph.D. Student at
+      is a software/data engineer teaching at
 
       <span itemprop="affiliation" itemscope itemtype="http://schema.org/EducationalOrganization"><link itemprop="url" href="https://www.indiana.edu/"><span itemprop="name">Indiana University Bloomington</span></span>.
 
@@ -41,7 +40,7 @@ excerpt: "Alexander L. Hayes is a Ph.D. Student at Indiana University (IU) Bloom
       <span itemprop="knowsAbout">health informatics</span>
       problems.
 
-      He holds a B.S. <span itemprop="knowsAbout">Computer Science</span> from
+      He holds a B.S. <span itemprop="knowsAbout">Computer Science</span> and an M.S. <span itemprop="knowsAbout">Informatics</span> from
 
       <span itemprop="alumniOf" itemscope itemtype="http://schema.org/EducationalOrganization">
       <link itemprop="url" href="https://www.indiana.edu/"><span itemprop="name">Indiana University</span>.
