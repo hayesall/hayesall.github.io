@@ -8,8 +8,11 @@ excerpt: "Alexander L. Hayes is a Ph.D. Student at Indiana University (IU) Bloom
 
 <div itemscope itemtype="http://schema.org/Person">
 
-  <div class="homepage-intro" style="align: center;">
-    <img itemprop="image" src="/images/Alexander_Hayes.png" alt="Alexander L. Hayes wearing glasses and a sweater" style="display: block; margin: auto; padding-top: 2em; padding-bottom: 2em;">
+  <div class="homepage-intro">
+    <picture>
+        <source type="image/avif" srcset="/images/Alexander-Hayes-1170.avif">
+        <img itemprop="image" src="/images/Alexander-Hayes-1170.jpg" alt="Alexander L. Hayes wearing glasses and a sweater">
+    </picture>
   </div>
 
   <div class="homepage-second">
@@ -52,6 +55,7 @@ excerpt: "Alexander L. Hayes is a Ph.D. Student at Indiana University (IU) Bloom
         <span style="font-weight: bold;">Contact</span>:
         <span itemprop="email">hayesall@iu.edu</span>
       </p>
+
   </div>
 </div>
 
@@ -62,7 +66,7 @@ excerpt: "Alexander L. Hayes is a Ph.D. Student at Indiana University (IU) Bloom
 {% assign all_publications = site.publications | reverse %}
 
 {% for publication in all_publications limit: 1 %}
-  {% include publication-list.liquid %}
+{% include publication-list.liquid %}
 {% endfor %}
 
 <h2>Updates</h2>
