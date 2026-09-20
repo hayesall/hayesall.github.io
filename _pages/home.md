@@ -11,7 +11,7 @@ excerpt: "Alexander L. Hayes is a Ph.D. Student at Indiana University (IU) Bloom
   <div class="homepage-intro">
     <picture>
         <source type="image/avif" srcset="/images/Alexander-Hayes-1170.avif">
-        <img itemprop="image" src="/images/Alexander-Hayes-1170.jpg" alt="Alexander L. Hayes wearing glasses and a sweater">
+        <img itemprop="image" src="/images/Alexander-Hayes-1170.jpg" alt="Alexander L. Hayes wearing glasses and a sweater" fetchpriority="high">
     </picture>
   </div>
 
