@@ -9,7 +9,7 @@ excerpt: "Alexander L. Hayes is a Ph.D. Student at Indiana University (IU) Bloom
 <div itemscope itemtype="http://schema.org/Person">
 
   <div class="homepage-intro" style="align: center;">
-    <img itemprop="image" src="/images/Alexander_Hayes.png" style="display: block; margin: auto; padding-top: 2em; padding-bottom: 2em;">
+    <img itemprop="image" src="/images/Alexander_Hayes.png" alt="Alexander L. Hayes wearing glasses and a sweater" style="display: block; margin: auto; padding-top: 2em; padding-bottom: 2em;">
   </div>
 
   <div class="homepage-second">
