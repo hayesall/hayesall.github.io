@@ -199,7 +199,7 @@
   github_repo_count:
 
 - id: 2026-fall-iu-info-i123
-  teaching_id:
+  teaching_id: 2026-fall-iu-info-i123
   term: Fall 2026
   university: Indiana University Bloomington
   code: INFO-I 123
