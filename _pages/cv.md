@@ -11,7 +11,7 @@ share: false
 ## Curriculum Vitae
 
 **Alexander L. Hayes**  
-**hayesall@iu.edu**  
+**alexander@hayes.ai**  
 Indiana University Bloomington  
 Luddy School of Informatics, Computing, and Engineering  
 Myles Brand Hall West 210  

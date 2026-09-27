@@ -53,7 +53,7 @@ excerpt: "Alexander L. Hayes is a Ph.D. Student at Indiana University (IU) Bloom
 
       <p>
         <span style="font-weight: bold;">Contact</span>:
-        <span itemprop="email">hayesall@iu.edu</span>
+        <span itemprop="email">alexander@hayes.ai</span>
       </p>
 
   </div>

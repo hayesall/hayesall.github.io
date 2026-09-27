@@ -48,7 +48,7 @@ One of these libraries can be used to manage these datasets locally:
 I would love more datasets, and I would love any feedback for whether
 this is useful to your research!
 
-- Email me at `hayesall@iu.edu`
+- Email me at `alexander@hayes.ai`
 - or open an issue on GitHub here: [https://github.com/srlearn/datasets/issues](https://github.com/srlearn/datasets/issues)
 
 I drew quite a bit of inspiration for this from [Jonas Schouterden's](https://people.cs.kuleuven.be/~jonas.schouterden/)
