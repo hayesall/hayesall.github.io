@@ -209,7 +209,7 @@
   github_repo_count: TBD
 
 - id: 2026-fall-iu-info-i211
-  teaching_id:
+  teaching_id: 2026-fall-iu-info-i211
   term: Fall 2026
   university: Indiana University Bloomington
   code: INFO-I 211

@@ -10,4 +10,15 @@
      width: 100%;
      max-width: 500px;
      height: auto;
- }
+}
+
+.right-image {
+    width: 50%;
+    float: right;
+}
+
+@media screen and (max-width: 800px) {
+    .right-image {
+        width: 100%;
+    }
+}
